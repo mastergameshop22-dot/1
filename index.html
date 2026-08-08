@@ -116,7 +116,7 @@
         /* ألوان حدود الكروت من فوق */
         .border-ps5 { border-top: 4px solid #ffffff; }
         .border-ps4 { border-top: 4px solid #1f6feb; }
-        .border-xbox { border-top: 4px solid #107c10; } /* لون الإكس بوكس الأخضر */
+        .border-xbox { border-top: 4px solid #107c10; } 
         .border-maintain { border-top: 4px solid #f85149; }
         .border-acc { border-top: 4px solid #2ea043; }
         
@@ -157,8 +157,13 @@
         th, td { padding: 12px; border-bottom: 1px solid #30363d; border-left: 1px solid #30363d; font-size: 14px;}
         th:last-child, td:last-child { border-left: none; }
         
-        .sub-header { background-color: #21262d; color: #8b949e; font-size: 13px; }
-        tr:hover { background-color: #1c2128; }
+        .sub-header { background-color: #0d1117; color: #8b949e; font-size: 13px; }
+        
+        /* 📌 التعديل الجديد: تلوين السطور بالتبادل عشان العين ماتتوهش 📌 */
+        tbody tr:nth-child(odd) { background-color: #161b22; } /* لون السطر الفردي */
+        tbody tr:nth-child(even) { background-color: #21262d; } /* لون السطر الزوجي (أفتح شوية) */
+        tbody tr:hover { background-color: #30363d; } /* لون السطر لما تقف عليه بالماوس */
+
         .sold-out { color: #da3633; font-size: 13px; font-weight: bold; background-color: rgba(218, 54, 51, 0.1); padding: 4px 8px; border-radius: 4px; display: inline-block; }
     </style>
 </head>
@@ -264,7 +269,7 @@
                 name: "Extra ⭐",
                 theme: "border-plus-ext",
                 items: [
-                    { label: "شهر واحد", price: "x", color: "#fcc200" }, /* حرف x هيظهر الكلمة: نفدت */
+                    { label: "شهر واحد", price: "x", color: "#fcc200" }, 
                     { label: "3 شهور", price: "x", color: "#fcc200" },
                     { label: "سنة كاملة", price: "x", color: "#fcc200" }
                 ]
@@ -305,7 +310,7 @@
         ];
 
         // ========================================================================
-        // 🔧👇 [ هنا تعديل أسعار صيانة الدرعات ] 👇🔧
+        // 🔧👇 [ هنا تعديل أسعار صيانة الدرعات (الأسعار الجديدة) ] 👇🔧
         // ========================================================================
         const maintenanceData = [
             {
@@ -349,7 +354,7 @@
                 theme: "border-xbox",
                 items: [
                     { label: "طقم الجلد", price: "100", color: "#fff" },
-                    { label: "المسطره", price: "350", color: "#fff" },
+                    { label: "المسطره", price: "250", color: "#fff" },
                     { label: "جلدة الانالوج", price: "20", color: "#fff" },
                     { label: "الانالوج", price: "100", color: "#fff" },
                     { label: "الشاسيه", price: "450", color: "#fff" },
@@ -577,7 +582,6 @@
         // (متعدلش حاجة هنا) كود التشغيل الأساسي للموقع (المحرك)
         // ========================================================================
         
-        // رسم الكروت ودعم علامة النفاذ X
         function renderCards(dataArray, containerId) {
             const container = document.getElementById(containerId);
             dataArray.forEach(group => {
@@ -611,7 +615,6 @@
         renderCards(maintenanceData, "maintenanceContainer");
         renderCards(accessoriesData, "accessoriesContainer");
 
-        // رسم الجداول ودعم علامة النفاذ X
         function formatPrice(val) {
             if (val.toLowerCase() === 'x' || val === '❌' || val === '-') return '<span class="sold-out">نفدت ❌</span>';
             return `<span style="color: #3fb950; font-weight: bold;">${val}</span>`;
@@ -634,7 +637,6 @@
         renderTable(ps5Games, "ps5Body");
         renderTable(ps4Games, "ps4Body");
 
-        // دالة البحث
         function searchTable() {
             let input = document.getElementById("searchInput").value.toUpperCase();
             let tables = [document.getElementById("ps5Body"), document.getElementById("ps4Body")];

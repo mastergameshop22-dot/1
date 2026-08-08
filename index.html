@@ -89,7 +89,7 @@
         input[type="text"]:focus { border-color: #58a6ff; box-shadow: 0 0 15px rgba(88, 166, 255, 0.4); }
 
         /* ================================== */
-        /* تصميم الكروت (الدرعات، الصيانة، الإكسسوارات) */
+        /* تصميم الكروت (الدرعات، الصيانة، الإكسسوارات، البلس) */
         /* ================================== */
         .grid-container {
             display: grid;
@@ -113,10 +113,16 @@
             border-color: #58a6ff;
         }
         
+        /* ألوان حدود الكروت من فوق */
         .border-ps5 { border-top: 4px solid #ffffff; }
         .border-ps4 { border-top: 4px solid #1f6feb; }
         .border-maintain { border-top: 4px solid #f85149; }
         .border-acc { border-top: 4px solid #2ea043; }
+        
+        /* ألوان كروت البلس */
+        .border-plus-ess { border-top: 4px solid #e3e3e3; }
+        .border-plus-ext { border-top: 4px solid #fcc200; }
+        .border-plus-pre { border-top: 4px solid #d2a8ff; }
 
         .card-title { font-size: 22px; font-weight: bold; margin-bottom: 20px; color: #fff; }
         
@@ -152,7 +158,7 @@
         
         .sub-header { background-color: #21262d; color: #8b949e; font-size: 13px; }
         tr:hover { background-color: #1c2128; }
-        .sold-out { color: #da3633; font-size: 12px; font-weight: bold; background-color: rgba(218, 54, 51, 0.1); padding: 3px 6px; border-radius: 4px; display: inline-block; }
+        .sold-out { color: #da3633; font-size: 13px; font-weight: bold; background-color: rgba(218, 54, 51, 0.1); padding: 4px 8px; border-radius: 4px; display: inline-block; }
     </style>
 </head>
 <body>
@@ -161,6 +167,7 @@
 
     <div class="tabs-container">
         <button class="tab-btn active" onclick="openSection('games')">أسعار الألعاب</button>
+        <button class="tab-btn" onclick="openSection('psplus')">اشتراكات بلس</button>
         <button class="tab-btn" onclick="openSection('controllers')">مبيعات الدرعات</button>
         <button class="tab-btn" onclick="openSection('maintenance')">صيانة الدرعات</button>
         <button class="tab-btn" onclick="openSection('accessories')">الإكسسوارات</button>
@@ -211,6 +218,11 @@
         </div>
     </div>
 
+    <!-- قسم اشتراكات بلس -->
+    <div id="psplus" class="tab-content">
+        <div class="grid-container" id="psPlusContainer"></div>
+    </div>
+
     <!-- قسم الدرعات -->
     <div id="controllers" class="tab-content">
         <div class="grid-container" id="controllersContainer"></div>
@@ -233,6 +245,39 @@
             document.getElementById(sectionId).classList.add('active');
             event.currentTarget.classList.add('active');
         }
+
+        // ========================================================================
+        // 🌟👇 [ هنا تعديل أسعار بلايستيشن بلس ] 👇🌟
+        // ========================================================================
+        const psPlusData = [
+            {
+                name: "Essential ⚪",
+                theme: "border-plus-ess",
+                items: [
+                    { label: "شهر واحد", price: "600", color: "#e3e3e3" },
+                    { label: "3 شهور", price: "1400", color: "#e3e3e3" },
+                    { label: "سنة كاملة", price: "2500", color: "#e3e3e3" }
+                ]
+            },
+            {
+                name: "Extra ⭐",
+                theme: "border-plus-ext",
+                items: [
+                    { label: "شهر واحد", price: "x", color: "#fcc200" }, /* حرف x هيظهر الكلمة: نفدت */
+                    { label: "3 شهور", price: "x", color: "#fcc200" },
+                    { label: "سنة كاملة", price: "x", color: "#fcc200" }
+                ]
+            },
+            {
+                name: "Premium 👑",
+                theme: "border-plus-pre",
+                items: [
+                    { label: "شهر واحد", price: "x", color: "#d2a8ff" },
+                    { label: "3 شهور", price: "x", color: "#d2a8ff" },
+                    { label: "سنة كاملة", price: "x", color: "#d2a8ff" }
+                ]
+            }
+        ];
 
         // ========================================================================
         // 🕹️👇 [ هنا تعديل أسعار مبيعات الدرعات ] 👇🕹️
@@ -259,7 +304,7 @@
         ];
 
         // ========================================================================
-        // 🔧👇 [ هنا تعديل أسعار صيانة الدرعات ] 👇🔧
+        // 🔧👇 [ هنا تعديل أسعار صيانة الدرعات (الأسعار الجديدة) ] 👇🔧
         // ========================================================================
         const maintenanceData = [
             {
@@ -269,11 +314,13 @@
                     { label: "طقم الجلد", price: "50", color: "#fff" },
                     { label: "البورده الورق", price: "100", color: "#fff" },
                     { label: "الانالوج", price: "100", color: "#fff" },
-                    { label: "جلدة الانالوج", price: "25", color: "#fff" },
-                    { label: "الوش", price: "150", color: "#fff" },
-                    { label: "الضهر", price: "150", color: "#fff" },
-                    { label: "الزرار (L1/L2/R1/R2)", price: "50", color: "#fff" },
-                    { label: "البطارية", price: "250", color: "#fff" }
+                    { label: "جلده الانالوج", price: "20", color: "#fff" },
+                    { label: "الوش مستعمل", price: "150", color: "#fff" },
+                    { label: "الوش جديد", price: "200", color: "#fff" },
+                    { label: "الضهر مستعمل", price: "150", color: "#fff" },
+                    { label: "الضهر جديد", price: "200", color: "#fff" },
+                    { label: "الزرار ايا كان الزرار الناقص", price: "50", color: "#fff" },
+                    { label: "البطاريه", price: "300", color: "#fff" }
                 ]
             },
             {
@@ -281,19 +328,19 @@
                 theme: "border-maintain",
                 items: [
                     { label: "طقم الجلد", price: "35", color: "#fff" },
-                    { label: "جلدة الانالوج", price: "15", color: "#fff" },
+                    { label: "جلدة الانالوج", price: "10", color: "#fff" },
                     { label: "الانالوج", price: "80", color: "#fff" },
                     { label: "البورده الورق", price: "50", color: "#fff" },
                     { label: "الشاسيه", price: "70", color: "#fff" },
-                    { label: "البرسة", price: "50", color: "#fff" },
-                    { label: "الزرار (L1/L2/R1/R2)", price: "20", color: "#fff" },
+                    { label: "البرسه تقريبا", price: "50", color: "#fff" },
+                    { label: "الزرار L1-L2 -R1-R2", price: "20", color: "#fff" },
                     { label: "السوسته", price: "15", color: "#fff" },
                     { label: "التخشينه", price: "10", color: "#fff" },
-                    { label: "الكاڤر (جديد)", price: "250", color: "#fff" },
-                    { label: "الوش (مستعمل)", price: "40", color: "#fff" },
-                    { label: "الضهر (مستعمل)", price: "40", color: "#fff" },
-                    { label: "IC شحن", price: "250", color: "#fff" },
-                    { label: "البطارية", price: "100", color: "#fff" }
+                    { label: "الكاڤر جديد", price: "250", color: "#fff" },
+                    { label: "الوش مستعمل", price: "30", color: "#fff" },
+                    { label: "الضهر مستعمل", price: "30", color: "#fff" },
+                    { label: "Ic شحن", price: "150", color: "#fff" },
+                    { label: "البطاريه", price: "100", color: "#fff" }
                 ]
             }
         ];
@@ -339,7 +386,7 @@
             {name: "Assassin's Creed Valhalla", off: "400", pr: "1000", sc: "700"},
             {name: "assassin's creed origins", off: "250", pr: "800", sc: "500"},
             {name: "assassin's creed odyssey", off: "250", pr: "800", sc: "500"},
-            {name: "assassin's creed BLACk flag", off: "-", pr: "-", sc: "-"},
+            {name: "assassin's creed BLACk flag", off: "x", pr: "x", sc: "x"},
             {name: "a way out", off: "300", pr: "700", sc: "500"},
             {name: "Astro Bot", off: "500", pr: "1800", sc: "1400"},
             {name: "BATMAN", off: "250", pr: "700", sc: "500"},
@@ -352,7 +399,7 @@
             {name: "DETROIT", off: "300", pr: "800", sc: "600"},
             {name: "Devil May Cry 5", off: "250", pr: "700", sc: "500"},
             {name: "Elden ring", off: "500", pr: "1200", sc: "900"},
-            {name: "dragon ball", off: "350", pr: "-", sc: "-"},
+            {name: "dragon ball", off: "350", pr: "x", sc: "x"},
             {name: "FAR CRY 6", off: "400", pr: "1000", sc: "700"},
             {name: "FC25", off: "250", pr: "700", sc: "400"},
             {name: "FIFA 24", off: "250", pr: "600", sc: "300"},
@@ -428,7 +475,7 @@
             {name: "Assassin's Creed Valhalla", off: "400", pr: "1000", sc: "700"},
             {name: "assassin's creed origins", off: "250", pr: "800", sc: "500"},
             {name: "assassin's creed odyssey", off: "250", pr: "800", sc: "500"},
-            {name: "assassin's creed BLACk flag", off: "-", pr: "-", sc: "-"},
+            {name: "assassin's creed BLACk flag", off: "x", pr: "x", sc: "x"},
             {name: "a way out", off: "300", pr: "700", sc: "500"},
             {name: "Astro Bot", off: "500", pr: "1800", sc: "1400"},
             {name: "BATMAN", off: "250", pr: "700", sc: "500"},
@@ -441,7 +488,7 @@
             {name: "DETROIT", off: "300", pr: "800", sc: "600"},
             {name: "Devil May Cry 5", off: "250", pr: "700", sc: "500"},
             {name: "Elden ring", off: "500", pr: "1200", sc: "900"},
-            {name: "dragon ball", off: "350", pr: "-", sc: "-"},
+            {name: "dragon ball", off: "350", pr: "x", sc: "x"},
             {name: "FAR CRY 6", off: "400", pr: "1000", sc: "700"},
             {name: "FC25", off: "250", pr: "700", sc: "400"},
             {name: "FIFA 24", off: "250", pr: "600", sc: "300"},
@@ -466,7 +513,7 @@
             {name: "MINE CRAFT", off: "300", pr: "750", sc: "500"},
             {name: "Mortal Kombat 11", off: "350", pr: "800", sc: "650"},
             {name: "Mortal Kombat XL", off: "250", pr: "600", sc: "400"},
-            {name: "Mortal Kombat X", off: "-", pr: "-", sc: "-"},
+            {name: "Mortal Kombat X", off: "x", pr: "x", sc: "x"},
             {name: "Need for Speed™ Heat", off: "300", pr: "750", sc: "500"},
             {name: "Need for Speed™ Payback", off: "250", pr: "650", sc: "450"},
             {name: "Need for Speed™ Rivals", off: "250", pr: "500", sc: "400"},
@@ -502,17 +549,26 @@
         ];
 
         // ========================================================================
-        // (متعدلش حاجة هنا) كود التشغيل الأساسي للموقع
+        // (متعدلش حاجة هنا) كود التشغيل الأساسي للموقع (المحرك)
         // ========================================================================
+        
+        // رسم الكروت ودعم علامة النفاذ X
         function renderCards(dataArray, containerId) {
             const container = document.getElementById(containerId);
             dataArray.forEach(group => {
                 let itemsHTML = '';
                 group.items.forEach(item => {
+                    let displayPrice = item.price;
+                    if (displayPrice.toLowerCase() === 'x' || displayPrice === '❌' || displayPrice === '-') {
+                        displayPrice = '<span class="sold-out">نفدت ❌</span>';
+                    } else {
+                        displayPrice = displayPrice + ' ج.م';
+                    }
+
                     itemsHTML += `
                         <div class="price-row">
                             <span class="item-name" style="color:${item.color}">${item.label}</span>
-                            <span class="item-price">${item.price} ج.م</span>
+                            <span class="item-price">${displayPrice}</span>
                         </div>
                     `;
                 });
@@ -525,10 +581,12 @@
             });
         }
 
+        renderCards(psPlusData, "psPlusContainer");
         renderCards(controllersData, "controllersContainer");
         renderCards(maintenanceData, "maintenanceContainer");
         renderCards(accessoriesData, "accessoriesContainer");
 
+        // رسم الجداول ودعم علامة النفاذ X
         function formatPrice(val) {
             if (val.toLowerCase() === 'x' || val === '❌' || val === '-') return '<span class="sold-out">نفدت ❌</span>';
             return `<span style="color: #3fb950; font-weight: bold;">${val}</span>`;
@@ -551,6 +609,7 @@
         renderTable(ps5Games, "ps5Body");
         renderTable(ps4Games, "ps4Body");
 
+        // دالة البحث
         function searchTable() {
             let input = document.getElementById("searchInput").value.toUpperCase();
             let tables = [document.getElementById("ps5Body"), document.getElementById("ps4Body")];

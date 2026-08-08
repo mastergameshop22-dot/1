@@ -159,10 +159,10 @@
         
         .sub-header { background-color: #0d1117; color: #8b949e; font-size: 13px; }
         
-        /* 📌 التعديل الجديد: تلوين السطور بالتبادل عشان العين ماتتوهش 📌 */
-        tbody tr:nth-child(odd) { background-color: #161b22; } /* لون السطر الفردي */
-        tbody tr:nth-child(even) { background-color: #21262d; } /* لون السطر الزوجي (أفتح شوية) */
-        tbody tr:hover { background-color: #30363d; } /* لون السطر لما تقف عليه بالماوس */
+        /* تلوين السطور بالتبادل */
+        tbody tr:nth-child(odd) { background-color: #161b22; }
+        tbody tr:nth-child(even) { background-color: #21262d; }
+        tbody tr:hover { background-color: #30363d; } 
 
         .sold-out { color: #da3633; font-size: 13px; font-weight: bold; background-color: rgba(218, 54, 51, 0.1); padding: 4px 8px; border-radius: 4px; display: inline-block; }
     </style>
@@ -293,24 +293,26 @@
                 name: "يد تحكم PS5 (DualSense)",
                 theme: "border-ps5",
                 items: [
-                    { label: "أصلي (وكيل)", price: "3500", color: "#58a6ff" },
-                    { label: "مستورد (خارج)", price: "3200", color: "#3fb950" },
-                    { label: "كوبي (درجة أولى)", price: "1500", color: "#d2a8ff" }
+                    { label: "أصلي", price: "4200", color: "#58a6ff" },
+                    { label: "استيراد", price: "3000-2750", color: "#3fb950" },
+                    { label: "كوبي", price: "2500", color: "#d2a8ff" }
                 ]
             },
             {
                 name: "يد تحكم PS4 (DualShock 4)",
                 theme: "border-ps4",
                 items: [
-                    { label: "أصلي (وكيل)", price: "1500", color: "#58a6ff" },
-                    { label: "مستورد (خارج)", price: "1200", color: "#3fb950" },
-                    { label: "كوبي (درجة أولى)", price: "500", color: "#d2a8ff" }
+                    { label: "امريكي اوريجينال", price: "1000", color: "#58a6ff" },
+                    { label: "برو استيراد", price: "1200", color: "#3fb950" },
+                    { label: "برو استيراد كسر زيرو", price: "x", color: "#3fb950" },
+                    { label: "كوبي جديد", price: "450", color: "#d2a8ff" },
+                    { label: "كوبي مستعمل", price: "275", color: "#d2a8ff" }
                 ]
             }
         ];
 
         // ========================================================================
-        // 🔧👇 [ هنا تعديل أسعار صيانة الدرعات (الأسعار الجديدة) ] 👇🔧
+        // 🔧👇 [ هنا تعديل أسعار صيانة الدرعات ] 👇🔧
         // ========================================================================
         const maintenanceData = [
             {
@@ -393,10 +395,10 @@
                 name: "إكسسوارات PS4",
                 theme: "border-acc",
                 items: [
-                    { label: "كابل شحن أصلي", price: "150", color: "#fff" },
-                    { label: "قاعدة شحن مزدوجة", price: "350", color: "#fff" },
-                    { label: "جراب سيليكون للذراع", price: "100", color: "#fff" },
-                    { label: "طقم حماية أنالوج", price: "50", color: "#fff" }
+                    { label: "استاند شاحن بلاطه", price: "150", color: "#fff" },
+                    { label: "استاند شحن dube مزدوج", price: "350", color: "#fff" },
+                    { label: "استاند شحن اوريجينال", price: "1000", color: "#fff" },
+                    { label: "استاند جهاز مبرد +شحن", price: "1000", color: "#fff" }
                 ]
             }
         ];
@@ -405,10 +407,10 @@
         // 🎮👇 [ هنا تعديل أسعار ألعاب PS5 ] 👇🎮
         // ========================================================================
         const ps5Games = [
-            {name: "FC 26", off: "350", pr: "1000", sc: "500"},
+            {name: "FC 26", off: "350", pr: "1200", sc: "500"},
             {name: "GTA", off: "300", pr: "800", sc: "500"},
-            {name: "OPS4", off: "300", pr: "700", sc: "500"},
-            {name: "OPS3", off: "350", pr: "800", sc: "650"},
+            {name: "OPS4", off: "250", pr: "800", sc: "550"},
+            {name: "OPS3", off: "300", pr: "900", sc: "650"},
             {name: "MARVIL ADVENGAR", off: "450", pr: "1000", sc: "700"},
             {name: "assassin's creed MIRAGE", off: "450", pr: "1000", sc: "750"},
             {name: "Assassin’s Creed The Ezio Collection", off: "250", pr: "650", sc: "450"},
@@ -494,10 +496,10 @@
         // 🎮👇 [ هنا تعديل أسعار ألعاب PS4 ] 👇🎮
         // ========================================================================
         const ps4Games = [
-            {name: "FC 26", off: "350", pr: "650", sc: "500"},
-            {name: "GTA", off: "300", pr: "700", sc: "500"},
-            {name: "OPS4", off: "300", pr: "700", sc: "500"},
-            {name: "OPS3", off: "350", pr: "800", sc: "650"},
+            {name: "FC 26", off: "350", pr: "1200", sc: "500"},
+            {name: "GTA", off: "300", pr: "800", sc: "500"},
+            {name: "OPS4", off: "250", pr: "800", sc: "550"},
+            {name: "OPS3", off: "300", pr: "900", sc: "650"},
             {name: "MARVIL ADVENGAR", off: "450", pr: "1000", sc: "700"},
             {name: "assassin's creed MIRAGE", off: "450", pr: "1000", sc: "750"},
             {name: "Assassin’s Creed The Ezio Collection", off: "250", pr: "650", sc: "450"},

@@ -5,21 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GAME SHOP STORE</title>
     <style>
-        /* 📌👇 هنا تقدر تعدل ألوان الموقع الأساسية 👇📌 */
         /* ================================== */
         /* إعدادات عامة وتصميم الألوان */
         /* ================================== */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: #0d1117; /* لون خلفية الموقع */
-            color: #c9d1d9; /* لون الخط الأساسي */
+            background-color: #0d1117; 
+            color: #c9d1d9; 
             margin: 0; 
             padding: 20px; 
             padding-bottom: 50px;
         }
         h1 { 
             text-align: center; 
-            color: #58a6ff; /* لون اسم المحل فوق خالص */
+            color: #58a6ff; 
             margin-bottom: 30px; 
             text-shadow: 0 0 15px rgba(88, 166, 255, 0.4); 
             font-size: 32px;
@@ -27,7 +26,7 @@
         }
         
         /* ================================== */
-        /* تصميم شريط التنقل (الزراير اللي فوق) */
+        /* شريط التنقل (التبويبات) */
         /* ================================== */
         .tabs-container {
             display: flex;
@@ -43,7 +42,7 @@
         }
         .tab-btn {
             background-color: transparent;
-            color: #8b949e; /* لون الزرار وهو مش متفعل */
+            color: #8b949e;
             border: 2px solid transparent;
             padding: 12px 25px;
             border-radius: 30px;
@@ -58,12 +57,11 @@
         }
         .tab-btn.active {
             color: #fff;
-            background-color: #1f6feb; /* لون الزرار وهو متفعل (أزرق) */
+            background-color: #1f6feb;
             border-color: #58a6ff;
             box-shadow: 0 0 15px rgba(88, 166, 255, 0.3);
         }
 
-        /* إخفاء وإظهار الأقسام (Animation) */
         .tab-content { display: none; animation: fadeIn 0.5s ease; }
         .tab-content.active { display: block; }
         @keyframes fadeIn {
@@ -72,7 +70,7 @@
         }
 
         /* ================================== */
-        /* تصميم شريط البحث عن الألعاب */
+        /* شريط البحث */
         /* ================================== */
         .search-container { text-align: center; margin-bottom: 40px; }
         input[type="text"] { 
@@ -91,7 +89,7 @@
         input[type="text"]:focus { border-color: #58a6ff; box-shadow: 0 0 15px rgba(88, 166, 255, 0.4); }
 
         /* ================================== */
-        /* تصميم الكروت (للدرعات، الصيانة، والإكسسوارات) */
+        /* تصميم الكروت (الدرعات، الصيانة، الإكسسوارات) */
         /* ================================== */
         .grid-container {
             display: grid;
@@ -115,11 +113,10 @@
             border-color: #58a6ff;
         }
         
-        /* 📌👇 ألوان الخطوط اللي فوق الكروت 👇📌 */
-        .border-ps5 { border-top: 4px solid #ffffff; }     /* كارت بلايستيشن 5 */
-        .border-ps4 { border-top: 4px solid #1f6feb; }     /* كارت بلايستيشن 4 */
-        .border-maintain { border-top: 4px solid #f85149; } /* كارت الصيانة (أحمر) */
-        .border-acc { border-top: 4px solid #2ea043; }      /* كارت الإكسسوارات (أخضر) */
+        .border-ps5 { border-top: 4px solid #ffffff; }
+        .border-ps4 { border-top: 4px solid #1f6feb; }
+        .border-maintain { border-top: 4px solid #f85149; }
+        .border-acc { border-top: 4px solid #2ea043; }
 
         .card-title { font-size: 22px; font-weight: bold; margin-bottom: 20px; color: #fff; }
         
@@ -136,7 +133,7 @@
         }
         .price-row:hover { background: #1c2128; border-color: #30363d; }
         .item-name { font-weight: bold; font-size: 15px; color: #c9d1d9;}
-        .item-price { font-weight: bold; color: #3fb950; font-size: 17px; } /* لون السعر في الكروت */
+        .item-price { font-weight: bold; color: #3fb950; font-size: 17px; }
 
         /* ================================== */
         /* تصميم جداول الألعاب */
@@ -146,8 +143,8 @@
 
         .table-container { background-color: #161b22; border-radius: 12px; border: 1px solid #30363d; overflow: hidden; }
         .section-title { font-size: 20px; text-align: center; padding: 15px; color: #fff; font-weight: bold; }
-        .title-ps5 { background-color: #1a5ca6; } /* لون خلفية عنوان جدول ألعاب PS5 */
-        .title-ps4 { background-color: #003791; } /* لون خلفية عنوان جدول ألعاب PS4 */
+        .title-ps5 { background-color: #1a5ca6; }
+        .title-ps4 { background-color: #003791; }
 
         table { width: 100%; border-collapse: collapse; text-align: center; }
         th, td { padding: 12px; border-bottom: 1px solid #30363d; border-left: 1px solid #30363d; font-size: 14px;}
@@ -162,7 +159,6 @@
 
     <h1>🎮 GAME SHOP STORE 🎮</h1>
 
-    <!-- 📌👇 زراير الأقسام: لو عايز تغير اسم زرار عدله من هنا 👇📌 -->
     <div class="tabs-container">
         <button class="tab-btn active" onclick="openSection('games')">أسعار الألعاب</button>
         <button class="tab-btn" onclick="openSection('controllers')">مبيعات الدرعات</button>
@@ -170,14 +166,13 @@
         <button class="tab-btn" onclick="openSection('accessories')">الإكسسوارات</button>
     </div>
 
-    <!-- 📌👇 القسم الأول: الألعاب (شريط البحث والجداول) 👇📌 -->
+    <!-- قسم الألعاب -->
     <div id="games" class="tab-content active">
         <div class="search-container">
             <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="🔍 ابحث عن اسم اللعبة هنا...">
         </div>
 
         <div class="tables-wrapper">
-            <!-- جدول ألعاب PS5 -->
             <div class="table-container">
                 <div class="section-title title-ps5">ألعاب PS5</div>
                 <table class="ps5-table">
@@ -196,7 +191,6 @@
                 </table>
             </div>
 
-            <!-- جدول ألعاب PS4 -->
             <div class="table-container">
                 <div class="section-title title-ps4">ألعاب PS4</div>
                 <table class="ps4-table">
@@ -217,29 +211,22 @@
         </div>
     </div>
 
-    <!-- 📌👇 القسم الثاني: مبيعات الدرعات (هتتملي بياناته من الجافاسكريبت تحت) 👇📌 -->
+    <!-- قسم الدرعات -->
     <div id="controllers" class="tab-content">
-        <div class="grid-container" id="controllersContainer">
-            <!-- الكروت هتترسم هنا أوتوماتيك -->
-        </div>
+        <div class="grid-container" id="controllersContainer"></div>
     </div>
 
-    <!-- 📌👇 القسم الثالث: الصيانة (هتتملي بياناته من الجافاسكريبت تحت) 👇📌 -->
+    <!-- قسم الصيانة -->
     <div id="maintenance" class="tab-content">
-        <div class="grid-container" id="maintenanceContainer">
-            <!-- الكروت هتترسم هنا أوتوماتيك -->
-        </div>
+        <div class="grid-container" id="maintenanceContainer"></div>
     </div>
 
-    <!-- 📌👇 القسم الرابع: الإكسسوارات (هتتملي بياناته من الجافاسكريبت تحت) 👇📌 -->
+    <!-- قسم الإكسسوارات -->
     <div id="accessories" class="tab-content">
-        <div class="grid-container" id="accessoriesContainer">
-            <!-- الكروت هتترسم هنا أوتوماتيك -->
-        </div>
+        <div class="grid-container" id="accessoriesContainer"></div>
     </div>
 
     <script>
-        // دالة التنقل بين الأقسام (متعدلش فيها حاجة)
         function openSection(sectionId) {
             document.querySelectorAll('.tab-content').forEach(content => { content.classList.remove('active'); });
             document.querySelectorAll('.tab-btn').forEach(btn => { btn.classList.remove('active'); });
@@ -247,19 +234,14 @@
             event.currentTarget.classList.add('active');
         }
 
-        // =========================================================
-        // ⚙️ 📌👇 أهم جزء: من هنا بتعدل الأسعار والبيانات 👇📌 ⚙️
-        // =========================================================
-
-        // 1️⃣ بيانات مبيعات الدرعات (تقدر تغير السعر بين علامات التنصيص "")
         const controllersData = [
             {
                 name: "يد تحكم PS5 (DualSense)",
                 theme: "border-ps5",
                 items: [
-                    { label: "أصلي (وكيل)", price: "3500", color: "#58a6ff" }, /* لون النص أزرق */
-                    { label: "مستورد (خارج)", price: "3200", color: "#3fb950" }, /* لون النص أخضر */
-                    { label: "كوبي (درجة أولى)", price: "1500", color: "#d2a8ff" } /* لون النص بنفسجي */
+                    { label: "أصلي (وكيل)", price: "3500", color: "#58a6ff" },
+                    { label: "مستورد (خارج)", price: "3200", color: "#3fb950" },
+                    { label: "كوبي (درجة أولى)", price: "1500", color: "#d2a8ff" }
                 ]
             },
             {
@@ -273,13 +255,12 @@
             }
         ];
 
-        // 2️⃣ بيانات أسعار الصيانة (عشان تضيف عطل جديد، انسخ سطر من السطور وكرره)
         const maintenanceData = [
             {
                 name: "صيانة درعات PS5",
                 theme: "border-maintain",
                 items: [
-                    { label: "تغيير أنالوج (أصلي)", price: "350", color: "#fff" }, /* color: #fff يعني الخط أبيض */
+                    { label: "تغيير أنالوج (أصلي)", price: "350", color: "#fff" },
                     { label: "تغيير فلاتة زراير", price: "200", color: "#fff" },
                     { label: "تغيير جلد زراير", price: "100", color: "#fff" },
                     { label: "تنظيف وصيانة دورية", price: "150", color: "#fff" }
@@ -297,7 +278,6 @@
             }
         ];
 
-        // 3️⃣ بيانات أسعار الإكسسوارات (نفس فكرة الصيانة بالظبط)
         const accessoriesData = [
             {
                 name: "إكسسوارات PS5",
@@ -321,33 +301,179 @@
             }
         ];
 
-        // 4️⃣ ألعاب PS5 (ضيف لعبتك الجديدة بنفس الشكل ده)
+        // جميع ألعاب PS5 من الكود القديم
         const ps5Games = [
             {name: "FC 26", off: "350", pr: "1200", sc: "500"},
             {name: "GTA", off: "300", pr: "800", sc: "500"},
+            {name: "OPS4", off: "250", pr: "800", sc: "550"},
+            {name: "OPS3", off: "300", pr: "900", sc: "650"},
+            {name: "MARVIL ADVENGAR", off: "450", pr: "1000", sc: "700"},
+            {name: "assassin's creed MIRAGE", off: "450", pr: "1000", sc: "750"},
+            {name: "Assassin’s Creed The Ezio Collection", off: "250", pr: "650", sc: "450"},
             {name: "Assassin’s Creed Shadows", off: "500", pr: "2000", sc: "1500"},
+            {name: "Assassin's Creed Valhalla", off: "400", pr: "1000", sc: "700"},
+            {name: "assassin's creed origins", off: "250", pr: "800", sc: "500"},
+            {name: "assassin's creed odyssey", off: "250", pr: "800", sc: "500"},
+            {name: "assassin's creed BLACk flag", off: "-", pr: "-", sc: "-"},
+            {name: "a way out", off: "300", pr: "700", sc: "500"},
+            {name: "Astro Bot", off: "500", pr: "1800", sc: "1400"},
+            {name: "BATMAN", off: "250", pr: "700", sc: "500"},
+            {name: "battlefieldV", off: "250", pr: "700", sc: "500"},
+            {name: "crash team racing", off: "350", pr: "800", sc: "600"},
+            {name: "crash bandicoot", off: "300", pr: "700", sc: "500"},
+            {name: "CONTROL", off: "400", pr: "950", sc: "650"},
+            {name: "Cyberpunk 2077", off: "400", pr: "900", sc: "600"},
+            {name: "daysgone", off: "350", pr: "900", sc: "700"},
+            {name: "DETROIT", off: "300", pr: "800", sc: "600"},
+            {name: "Devil May Cry 5", off: "250", pr: "700", sc: "500"},
             {name: "Elden ring", off: "500", pr: "1200", sc: "900"},
-            {name: "Ghost of Yōte", off: "500", pr: "2000", sc: "1500"},
+            {name: "dragon ball", off: "350", pr: "-", sc: "-"},
+            {name: "FAR CRY 6", off: "400", pr: "1000", sc: "700"},
+            {name: "FC25", off: "250", pr: "700", sc: "400"},
+            {name: "FIFA 24", off: "250", pr: "600", sc: "300"},
+            {name: "Forza Horizon 5 Standard Edition", off: "500", pr: "1800", sc: "1400"},
+            {name: "Ghost of Tsushima", off: "450", pr: "1200", sc: "850"},
+            {name: "God of War", off: "350", pr: "800", sc: "600"},
+            {name: "God of War Ragnarök", off: "400", pr: "1000", sc: "750"},
+            {name: "GRIP Digital", off: "300", pr: "650", sc: "500"},
+            {name: "HITMAN 3", off: "450", pr: "900", sc: "700"},
+            {name: "HITMAN 2", off: "300", pr: "700", sc: "600"},
+            {name: "Hogwarts Legacy", off: "500", pr: "900", sc: "700"},
+            {name: "Horizon Forbidden West", off: "450", pr: "1100", sc: "700"},
+            {name: "Horizon Zero Dawn", off: "250", pr: "650", sc: "450"},
+            {name: "Injustice: Gods Among Us", off: "250", pr: "600", sc: "400"},
+            {name: "Injustice™ 2", off: "250", pr: "700", sc: "500"},
+            {name: "Just Cause 4: Reloaded", off: "250", pr: "700", sc: "450"},
+            {name: "Just Cause 3", off: "250", pr: "550", sc: "400"},
+            {name: "It Takes Two", off: "350", pr: "800", sc: "500"},
+            {name: "The Last Of Us™ Remastered", off: "350", pr: "800", sc: "600"},
+            {name: "LEGO", off: "250", pr: "600", sc: "400"},
+            {name: "MINE CRAFT", off: "300", pr: "750", sc: "500"},
+            {name: "Mortal Kombat™ 1", off: "500", pr: "1000", sc: "700"},
+            {name: "Mortal Kombat 11", off: "350", pr: "800", sc: "650"},
+            {name: "Mortal Kombat XL", off: "250", pr: "600", sc: "400"},
+            {name: "Need for Speed™ Heat", off: "300", pr: "750", sc: "500"},
+            {name: "Need for Speed™ Payback", off: "250", pr: "650", sc: "450"},
+            {name: "Need for Speed™ Rivals", off: "250", pr: "500", sc: "400"},
+            {name: "eFootball™ 2026", off: "free", pr: "100", sc: "100"},
+            {name: "PES18", off: "400", pr: "100", sc: "800"},
+            {name: "PES19", off: "500", pr: "1500", sc: "x"},
+            {name: "PES20", off: "300", pr: "800", sc: "500"},
+            {name: "PES21", off: "500", pr: "1500", sc: "1000"},
+            {name: "Outlast", off: "250", pr: "600", sc: "400"},
+            {name: "Ratchet & Clank™", off: "250", pr: "550", sc: "450"},
+            {name: "Red Dead Redemption 2", off: "350", pr: "900", sc: "700"},
+            {name: "RESIDENT EVIL 2", off: "300", pr: "800", sc: "600"},
+            {name: "RESIDENT EVIL 4", off: "450", pr: "1000", sc: "700"},
+            {name: "RESIDENT EVIL 3", off: "300", pr: "900", sc: "650"},
+            {name: "RESIDENT EVIL 7 biohazard", off: "250", pr: "700", sc: "500"},
+            {name: "Resident Evil Village", off: "350", pr: "800", sc: "600"},
+            {name: "Resident Evil Requiem", off: "600", pr: "2200", sc: "1800"},
+            {name: "Rayman® Legends", off: "200", pr: "550", sc: "400"},
+            {name: "Sniper Elite 5", off: "200", pr: "600", sc: "450"},
             {name: "Marvel’s Spider-Man 2", off: "500", pr: "1500", sc: "1200"},
+            {name: "Marvel's Spider-Man: Miles Morales", off: "350", pr: "800", sc: "650"},
+            {name: "Marvel's Spider-Man Remastered", off: "300", pr: "700", sc: "500"},
+            {name: "TEKKEN 7", off: "250", pr: "700", sc: "500"},
+            {name: "Tennis World Tour", off: "200", pr: "500", sc: "350"},
+            {name: "The Witcher 3: Wild Hunt", off: "350", pr: "800", sc: "650"},
+            {name: "TOMB RIDER", off: "300", pr: "700", sc: "500"},
+            {name: "UNCHARTED™ The Nathan Drake Collection", off: "200", pr: "550", sc: "450"},
+            {name: "UNCHARTED 4: A Thief’s End", off: "300", pr: "800", sc: "650"},
+            {name: "UNCHARTED: The Lost Legacy", off: "250", pr: "700", sc: "500"},
+            {name: "Unravel Two", off: "200", pr: "500", sc: "350"},
+            {name: "Watch Dogs®: Legion", off: "350", pr: "800", sc: "600"},
+            {name: "WWE20", off: "250", pr: "800", sc: "600"},
+            {name: "WWE22", off: "350", pr: "1000", sc: "800"},
             {name: "WWE26", off: "600", pr: "2200", sc: "1800"}
-            /* ضيف ألعابك هنا مكان السطر ده */
         ];
 
-        // 5️⃣ ألعاب PS4 (ضيف لعبتك الجديدة بنفس الشكل ده)
+        // جميع ألعاب PS4 من الكود القديم
         const ps4Games = [
             {name: "FC 26", off: "350", pr: "1200", sc: "500"},
             {name: "GTA", off: "300", pr: "800", sc: "500"},
+            {name: "OPS4", off: "250", pr: "800", sc: "550"},
+            {name: "OPS3", off: "300", pr: "900", sc: "650"},
+            {name: "MARVIL ADVENGAR", off: "450", pr: "1000", sc: "700"},
+            {name: "assassin's creed MIRAGE", off: "450", pr: "1000", sc: "750"},
+            {name: "Assassin’s Creed The Ezio Collection", off: "250", pr: "650", sc: "450"},
+            {name: "Assassin’s Creed Shadows", off: "500", pr: "2000", sc: "1500"},
+            {name: "Assassin's Creed Valhalla", off: "400", pr: "1000", sc: "700"},
+            {name: "assassin's creed origins", off: "250", pr: "800", sc: "500"},
+            {name: "assassin's creed odyssey", off: "250", pr: "800", sc: "500"},
+            {name: "assassin's creed BLACk flag", off: "-", pr: "-", sc: "-"},
+            {name: "a way out", off: "300", pr: "700", sc: "500"},
+            {name: "Astro Bot", off: "500", pr: "1800", sc: "1400"},
+            {name: "BATMAN", off: "250", pr: "700", sc: "500"},
+            {name: "battlefieldV", off: "250", pr: "700", sc: "500"},
+            {name: "crash team racing", off: "350", pr: "800", sc: "600"},
+            {name: "crash bandicoot", off: "300", pr: "700", sc: "500"},
+            {name: "CONTROL", off: "400", pr: "950", sc: "650"},
+            {name: "Cyberpunk 2077", off: "400", pr: "900", sc: "600"},
+            {name: "daysgone", off: "350", pr: "900", sc: "700"},
+            {name: "DETROIT", off: "300", pr: "800", sc: "600"},
+            {name: "Devil May Cry 5", off: "250", pr: "700", sc: "500"},
+            {name: "Elden ring", off: "500", pr: "1200", sc: "900"},
+            {name: "dragon ball", off: "350", pr: "-", sc: "-"},
+            {name: "FAR CRY 6", off: "400", pr: "1000", sc: "700"},
+            {name: "FC25", off: "250", pr: "700", sc: "400"},
+            {name: "FIFA 24", off: "250", pr: "600", sc: "300"},
+            {name: "Forza Horizon 5 Standard Edition", off: "500", pr: "1800", sc: "1400"},
+            {name: "Ghost of Yōte", off: "500", pr: "2000", sc: "1500"},
+            {name: "Ghost of Tsushima", off: "450", pr: "1200", sc: "850"},
+            {name: "God of War", off: "350", pr: "800", sc: "600"},
             {name: "God of War Ragnarök", off: "400", pr: "1000", sc: "750"},
+            {name: "GRIP Digital", off: "300", pr: "650", sc: "500"},
+            {name: "HITMAN 3", off: "450", pr: "900", sc: "700"},
+            {name: "HITMAN 2", off: "300", pr: "700", sc: "600"},
+            {name: "Hogwarts Legacy", off: "500", pr: "900", sc: "700"},
+            {name: "Horizon Forbidden West", off: "450", pr: "1100", sc: "700"},
+            {name: "Horizon Zero Dawn", off: "250", pr: "650", sc: "450"},
+            {name: "Injustice: Gods Among Us", off: "250", pr: "600", sc: "400"},
+            {name: "Injustice™ 2", off: "250", pr: "700", sc: "500"},
+            {name: "Just Cause 4: Reloaded", off: "250", pr: "700", sc: "450"},
+            {name: "Just Cause 3", off: "250", pr: "550", sc: "400"},
+            {name: "It Takes Two", off: "350", pr: "800", sc: "500"},
+            {name: "The Last Of Us™ Remastered", off: "350", pr: "800", sc: "600"},
+            {name: "LEGO", off: "250", pr: "600", sc: "400"},
+            {name: "MINE CRAFT", off: "300", pr: "750", sc: "500"},
+            {name: "Mortal Kombat 11", off: "350", pr: "800", sc: "650"},
+            {name: "Mortal Kombat XL", off: "250", pr: "600", sc: "400"},
+            {name: "Mortal Kombat X", off: "-", pr: "-", sc: "-"},
+            {name: "Need for Speed™ Heat", off: "300", pr: "750", sc: "500"},
+            {name: "Need for Speed™ Payback", off: "250", pr: "650", sc: "450"},
+            {name: "Need for Speed™ Rivals", off: "250", pr: "500", sc: "400"},
+            {name: "eFootball™ 2026", off: "free", pr: "100", sc: "100"},
+            {name: "PES18", off: "400", pr: "100", sc: "800"},
+            {name: "PES19", off: "500", pr: "1500", sc: "x"},
+            {name: "PES20", off: "300", pr: "800", sc: "500"},
+            {name: "PES21", off: "500", pr: "1500", sc: "1000"},
+            {name: "Outlast", off: "250", pr: "600", sc: "400"},
+            {name: "Ratchet & Clank™", off: "250", pr: "550", sc: "450"},
             {name: "Red Dead Redemption 2", off: "350", pr: "900", sc: "700"},
-            {name: "The Last Of Us™ Remastered", off: "350", pr: "800", sc: "600"}
-            /* ضيف ألعابك هنا مكان السطر ده */
+            {name: "RESIDENT EVIL 2", off: "300", pr: "800", sc: "600"},
+            {name: "RESIDENT EVIL 4", off: "450", pr: "1000", sc: "700"},
+            {name: "RESIDENT EVIL 3", off: "300", pr: "900", sc: "650"},
+            {name: "RESIDENT EVIL 7 biohazard", off: "250", pr: "700", sc: "500"},
+            {name: "Resident Evil Village", off: "350", pr: "800", sc: "600"},
+            {name: "Resident Evil Requiem", off: "600", pr: "2200", sc: "1800"},
+            {name: "Rayman® Legends", off: "200", pr: "550", sc: "400"},
+            {name: "Sniper Elite 5", off: "200", pr: "600", sc: "450"},
+            {name: "Marvel's Spider-Man: Miles Morales", off: "350", pr: "800", sc: "650"},
+            {name: "Marvel's Spider-Man Remastered", off: "300", pr: "700", sc: "500"},
+            {name: "TEKKEN 7", off: "250", pr: "700", sc: "500"},
+            {name: "Tennis World Tour", off: "200", pr: "500", sc: "350"},
+            {name: "The Witcher 3: Wild Hunt", off: "350", pr: "800", sc: "650"},
+            {name: "TOMB RIDER", off: "300", pr: "700", sc: "500"},
+            {name: "UNCHARTED™ The Nathan Drake Collection", off: "200", pr: "550", sc: "450"},
+            {name: "UNCHARTED 4: A Thief’s End", off: "300", pr: "800", sc: "650"},
+            {name: "UNCHARTED: The Lost Legacy", off: "250", pr: "700", sc: "500"},
+            {name: "Unravel Two", off: "200", pr: "500", sc: "350"},
+            {name: "Watch Dogs®: Legion", off: "350", pr: "800", sc: "600"},
+            {name: "WWE20", off: "250", pr: "800", sc: "600"},
+            {name: "WWE22", off: "350", pr: "1000", sc: "800"}
         ];
 
-        // =========================================================
-        // 🛠️ دوال التشغيل (برمجة الموقع - متعدلش فيها حاجة عشان متبوظش) 🛠️
-        // =========================================================
-
-        // رسم كروت الدرعات والصيانة والإكسسوارات
         function renderCards(dataArray, containerId) {
             const container = document.getElementById(containerId);
             dataArray.forEach(group => {
@@ -373,7 +499,6 @@
         renderCards(maintenanceData, "maintenanceContainer");
         renderCards(accessoriesData, "accessoriesContainer");
 
-        // رسم جداول الألعاب وحالة نفاد الكمية
         function formatPrice(val) {
             if (val.toLowerCase() === 'x' || val === '❌' || val === '-') return '<span class="sold-out">نفدت ❌</span>';
             return `<span style="color: #3fb950; font-weight: bold;">${val}</span>`;
@@ -396,7 +521,6 @@
         renderTable(ps5Games, "ps5Body");
         renderTable(ps4Games, "ps4Body");
 
-        // دالة البحث في جدول الألعاب
         function searchTable() {
             let input = document.getElementById("searchInput").value.toUpperCase();
             let tables = [document.getElementById("ps5Body"), document.getElementById("ps4Body")];

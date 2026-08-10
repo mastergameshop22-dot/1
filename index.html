@@ -4,167 +4,241 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GAME SHOP STORE</title>
+    <!-- استدعاء خط احترافي للموقع -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         /* ================================== */
-        /* إعدادات عامة وتصميم الألوان */
+        /* إعدادات عامة وتصميم الألوان الاحترافي */
         /* ================================== */
+        :root {
+            --bg-dark: #0b1120;
+            --card-bg: #1e293b;
+            --row-bg: #0f172a;
+            --accent-blue: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.5);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-light: rgba(255, 255, 255, 0.08);
+        }
+
         body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: #0d1117; 
-            color: #c9d1d9; 
+            font-family: 'Cairo', sans-serif; 
+            background-color: var(--bg-dark); 
+            background-image: radial-gradient(circle at top right, #1e293b 0%, transparent 40%),
+                              radial-gradient(circle at bottom left, #0f172a 0%, transparent 40%);
+            color: var(--text-main); 
             margin: 0; 
             padding: 20px; 
-            padding-bottom: 50px;
+            padding-bottom: 60px;
+            min-height: 100vh;
         }
+
         h1 { 
             text-align: center; 
-            color: #58a6ff; 
-            margin-bottom: 30px; 
-            text-shadow: 0 0 15px rgba(88, 166, 255, 0.4); 
-            font-size: 32px;
-            letter-spacing: 2px;
+            font-weight: 800;
+            font-size: 38px;
+            letter-spacing: 3px;
+            margin-bottom: 40px; 
+            /* تأثير التدرج اللوني للعنوان */
+            background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(0, 201, 255, 0.2);
         }
         
         /* ================================== */
-        /* شريط التنقل (التبويبات) */
+        /* شريط التنقل (التبويبات الزجاجية) */
         /* ================================== */
         .tabs-container {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 40px;
-            background: #161b22;
+            gap: 12px;
+            margin-bottom: 45px;
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(12px);
             padding: 15px;
-            border-radius: 12px;
-            border: 1px solid #30363d;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         .tab-btn {
             background-color: transparent;
-            color: #8b949e;
-            border: 2px solid transparent;
-            padding: 12px 25px;
-            border-radius: 30px;
+            color: var(--text-muted);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 12px;
             font-size: 16px;
-            font-weight: bold;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .tab-btn:hover {
-            color: #c9d1d9;
-            background-color: #21262d;
+            color: var(--text-main);
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: translateY(-2px);
         }
         .tab-btn.active {
             color: #fff;
-            background-color: #1f6feb;
-            border-color: #58a6ff;
-            box-shadow: 0 0 15px rgba(88, 166, 255, 0.3);
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            box-shadow: 0 8px 20px var(--accent-glow);
+            transform: translateY(-2px);
         }
 
-        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content { display: none; animation: slideUp 0.5s ease forwards; }
         .tab-content.active { display: block; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         /* ================================== */
-        /* شريط البحث */
+        /* شريط البحث المضيء */
         /* ================================== */
         .search-container { text-align: center; margin-bottom: 40px; }
         input[type="text"] { 
-            padding: 15px; 
-            width: 90%; 
-            max-width: 500px; 
-            border: 1px solid #30363d; 
-            border-radius: 30px; 
-            background-color: #161b22; 
+            padding: 18px 25px; 
+            width: 100%; 
+            max-width: 550px; 
+            border: 1px solid var(--border-light); 
+            border-radius: 50px; 
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
             color: #fff; 
+            font-family: 'Cairo', sans-serif;
             outline: none; 
             font-size: 16px; 
             text-align: center; 
-            transition: 0.3s;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        input[type="text"]:focus { border-color: #58a6ff; box-shadow: 0 0 15px rgba(88, 166, 255, 0.4); }
+        input[type="text"]:focus { 
+            border-color: #3b82f6; 
+            box-shadow: 0 0 25px var(--accent-glow); 
+            transform: scale(1.02);
+            background: var(--card-bg);
+        }
+        input[type="text"]::placeholder { color: #64748b; }
 
         /* ================================== */
-        /* تصميم الكروت (الدرعات، الصيانة، الإكسسوارات، البلس) */
+        /* تصميم الكروت (3D & Hover Effects) */
         /* ================================== */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
             margin-bottom: 50px;
             justify-content: center;
         }
         .card {
-            background-color: #161b22;
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid #30363d;
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid var(--border-light);
             text-align: center;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
         }
         .card:hover { 
-            transform: translateY(-8px); 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4); 
-            border-color: #58a6ff;
+            transform: translateY(-10px); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4); 
+            border-color: rgba(255,255,255,0.15);
         }
         
-        /* ألوان حدود الكروت من فوق */
-        .border-ps5 { border-top: 4px solid #ffffff; }
-        .border-ps4 { border-top: 4px solid #1f6feb; }
-        .border-xbox { border-top: 4px solid #107c10; } 
-        .border-maintain { border-top: 4px solid #f85149; }
-        .border-acc { border-top: 4px solid #2ea043; }
+        /* تدرجات ألوان الخطوط العلوية للكروت */
+        .border-ps5::before { background: linear-gradient(90deg, #e2e8f0, #94a3b8); }
+        .border-ps4::before { background: linear-gradient(90deg, #1d4ed8, #3b82f6); }
+        .border-xbox::before { background: linear-gradient(90deg, #16a34a, #22c55e); } 
+        .border-maintain::before { background: linear-gradient(90deg, #b91c1c, #ef4444); }
+        .border-acc::before { background: linear-gradient(90deg, #ca8a04, #eab308); }
         
-        /* ألوان كروت البلس */
-        .border-plus-ess { border-top: 4px solid #e3e3e3; }
-        .border-plus-ext { border-top: 4px solid #fcc200; }
-        .border-plus-pre { border-top: 4px solid #d2a8ff; }
+        .border-plus-ess::before { background: linear-gradient(90deg, #94a3b8, #cbd5e1); }
+        .border-plus-ext::before { background: linear-gradient(90deg, #d97706, #facc15); }
+        .border-plus-pre::before { background: linear-gradient(90deg, #7e22ce, #a855f7); }
 
-        .card-title { font-size: 22px; font-weight: bold; margin-bottom: 20px; color: #fff; }
+        .card-title { font-size: 24px; font-weight: 800; margin-bottom: 25px; color: #fff; letter-spacing: 1px;}
         
         .price-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #0d1117;
-            margin: 12px 0;
-            padding: 12px 15px;
-            border-radius: 8px;
-            border: 1px solid #21262d;
-            transition: 0.3s;
+            background: var(--row-bg);
+            margin: 14px 0;
+            padding: 14px 18px;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
         }
-        .price-row:hover { background: #1c2128; border-color: #30363d; }
-        .item-name { font-weight: bold; font-size: 15px; color: #c9d1d9;}
-        .item-price { font-weight: bold; color: #3fb950; font-size: 17px; }
+        .price-row:hover { 
+            background: #1e293b; 
+            border-color: rgba(255,255,255,0.1); 
+            transform: translateX(-5px);
+        }
+        .item-name { font-weight: 600; font-size: 16px; color: var(--text-main);}
+        .item-price { font-weight: 800; color: #4ade80; font-size: 18px; }
 
         /* ================================== */
-        /* تصميم جداول الألعاب */
+        /* تصميم جداول الألعاب (شكل حديث) */
         /* ================================== */
-        .tables-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+        .tables-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
         @media (max-width: 900px) { .tables-wrapper { grid-template-columns: 1fr; } }
 
-        .table-container { background-color: #161b22; border-radius: 12px; border: 1px solid #30363d; overflow: hidden; }
-        .section-title { font-size: 20px; text-align: center; padding: 15px; color: #fff; font-weight: bold; }
-        .title-ps5 { background-color: #1a5ca6; }
-        .title-ps4 { background-color: #003791; }
+        .table-container { 
+            background-color: var(--card-bg); 
+            border-radius: 20px; 
+            border: 1px solid var(--border-light); 
+            overflow: hidden; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        .section-title { 
+            font-size: 22px; 
+            text-align: center; 
+            padding: 20px; 
+            color: #fff; 
+            font-weight: 800; 
+            letter-spacing: 1px;
+        }
+        .title-ps5 { background: linear-gradient(135deg, #1e3a8a, #3b82f6); }
+        .title-ps4 { background: linear-gradient(135deg, #172554, #1d4ed8); }
 
         table { width: 100%; border-collapse: collapse; text-align: center; }
-        th, td { padding: 12px; border-bottom: 1px solid #30363d; border-left: 1px solid #30363d; font-size: 14px;}
-        th:last-child, td:last-child { border-left: none; }
+        th, td { padding: 15px; border-bottom: 1px solid var(--border-light); font-size: 15px;}
         
-        .sub-header { background-color: #0d1117; color: #8b949e; font-size: 13px; }
+        .sub-header { background-color: rgba(0,0,0,0.3); color: #cbd5e1; font-size: 14px; font-weight: 800;}
         
-        /* تلوين السطور بالتبادل */
-        tbody tr:nth-child(odd) { background-color: #161b22; }
-        tbody tr:nth-child(even) { background-color: #21262d; }
-        tbody tr:hover { background-color: #30363d; } 
+        /* تلوين السطور وتأثيرات الهوفر */
+        tbody tr:nth-child(odd) { background-color: transparent; }
+        tbody tr:nth-child(even) { background-color: rgba(255,255,255,0.02); }
+        tbody tr:hover { background-color: rgba(59, 130, 246, 0.1); cursor: default;} 
 
-        .sold-out { color: #da3633; font-size: 13px; font-weight: bold; background-color: rgba(218, 54, 51, 0.1); padding: 4px 8px; border-radius: 4px; display: inline-block; }
+        .sold-out { 
+            color: #fca5a5; 
+            font-size: 13px; 
+            font-weight: 800; 
+            background: linear-gradient(135deg, #991b1b, #dc2626); 
+            color: white;
+            padding: 5px 10px; 
+            border-radius: 8px; 
+            display: inline-block; 
+            box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3);
+        }
+        
+        .game-price-tag {
+            color: #4ade80;
+            font-weight: 800;
+            background: rgba(74, 222, 128, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
     </style>
 </head>
 <body>
@@ -172,17 +246,17 @@
     <h1>🎮 GAME SHOP STORE 🎮</h1>
 
     <div class="tabs-container">
-        <button class="tab-btn active" onclick="openSection('games')">أسعار الألعاب</button>
-        <button class="tab-btn" onclick="openSection('psplus')">اشتراكات بلس</button>
-        <button class="tab-btn" onclick="openSection('controllers')">مبيعات الدرعات</button>
-        <button class="tab-btn" onclick="openSection('maintenance')">صيانة الدرعات</button>
-        <button class="tab-btn" onclick="openSection('accessories')">الإكسسوارات</button>
+        <button class="tab-btn active" onclick="openSection('games')">🎯 أسعار الألعاب</button>
+        <button class="tab-btn" onclick="openSection('psplus')">⭐ اشتراكات بلس</button>
+        <button class="tab-btn" onclick="openSection('controllers')">🕹️ مبيعات الدرعات</button>
+        <button class="tab-btn" onclick="openSection('maintenance')">🔧 صيانة الدرعات</button>
+        <button class="tab-btn" onclick="openSection('accessories')">🎧 الإكسسوارات</button>
     </div>
 
     <!-- قسم الألعاب -->
     <div id="games" class="tab-content active">
         <div class="search-container">
-            <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="🔍 ابحث عن اسم اللعبة هنا...">
+            <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="🔍 ابحث عن اسم اللعبة المفضل لك...">
         </div>
 
         <div class="tables-wrapper">
@@ -260,27 +334,27 @@
                 name: "Essential ⚪",
                 theme: "border-plus-ess",
                 items: [
-                    { label: "شهر واحد", price: "800", color: "#e3e3e3" },
-                    { label: "3 شهور", price: "1500", color: "#e3e3e3" },
-                    { label: "سنة كاملة", price: "2500", color: "#e3e3e3" }
+                    { label: "شهر واحد", price: "800", color: "#f8fafc" },
+                    { label: "3 شهور", price: "1500", color: "#f8fafc" },
+                    { label: "سنة كاملة", price: "2500", color: "#f8fafc" }
                 ]
             },
             {
                 name: "Extra ⭐",
                 theme: "border-plus-ext",
                 items: [
-                    { label: "شهر واحد", price: "1000", color: "#fcc200" }, 
-                    { label: "3 شهور", price: "2000", color: "#fcc200" },
-                    { label: "سنة كاملة", price: "4000", color: "#fcc200" }
+                    { label: "شهر واحد", price: "1000", color: "#fbbf24" }, 
+                    { label: "3 شهور", price: "2000", color: "#fbbf24" },
+                    { label: "سنة كاملة", price: "4000", color: "#fbbf24" }
                 ]
             },
             {
                 name: "Premium 👑",
                 theme: "border-plus-pre",
                 items: [
-                    { label: "شهر واحد", price: "x", color: "#d2a8ff" },
-                    { label: "3 شهور", price: "x", color: "#d2a8ff" },
-                    { label: "سنة كاملة", price: "x", color: "#d2a8ff" }
+                    { label: "شهر واحد", price: "x", color: "#c084fc" },
+                    { label: "3 شهور", price: "x", color: "#c084fc" },
+                    { label: "سنة كاملة", price: "x", color: "#c084fc" }
                 ]
             }
         ];
@@ -293,20 +367,20 @@
                 name: "يد تحكم PS5 (DualSense)",
                 theme: "border-ps5",
                 items: [
-                    { label: "أصلي", price: "4200", color: "#58a6ff" },
-                    { label: "استيراد", price: "3000-2750", color: "#3fb950" },
-                    { label: "كوبي", price: "2500", color: "#d2a8ff" }
+                    { label: "أصلي", price: "4200", color: "#60a5fa" },
+                    { label: "استيراد", price: "3000-2750", color: "#4ade80" },
+                    { label: "كوبي", price: "2500", color: "#c084fc" }
                 ]
             },
             {
                 name: "يد تحكم PS4 (DualShock 4)",
                 theme: "border-ps4",
                 items: [
-                    { label: "امريكي اوريجينال", price: "1000", color: "#58a6ff" },
-                    { label: "برو استيراد", price: "1200", color: "#3fb950" },
-                    { label: "برو استيراد كسر زيرو", price: "1500", color: "#3fb950" },
-                    { label: "كوبي جديد", price: "450", color: "#d2a8ff" },
-                    { label: "كوبي مستعمل", price: "275", color: "#d2a8ff" }
+                    { label: "امريكي اوريجينال", price: "1000", color: "#60a5fa" },
+                    { label: "برو استيراد", price: "1200", color: "#4ade80" },
+                    { label: "برو استيراد كسر زيرو", price: "1500", color: "#4ade80" },
+                    { label: "كوبي جديد", price: "450", color: "#c084fc" },
+                    { label: "كوبي مستعمل", price: "275", color: "#c084fc" }
                 ]
             }
         ];
@@ -319,60 +393,60 @@
                 name: "صيانة درعات PS5",
                 theme: "border-maintain",
                 items: [
-                    { label: "طقم الجلد", price: "50", color: "#fff" },
-                    { label: "البورده الورق", price: "100", color: "#fff" },
-                    { label: "الانالوج", price: "100", color: "#fff" },
-                    { label: "جلده الانالوج", price: "20", color: "#fff" },
-                    { label: "الوش مستعمل", price: "150", color: "#fff" },
-                    { label: "الوش جديد", price: "200", color: "#fff" },
-                    { label: "الضهر مستعمل", price: "150", color: "#fff" },
-                    { label: "الضهر جديد", price: "200", color: "#fff" },
-                    { label: "الزرار ايا كان الزرار الناقص", price: "50", color: "#fff" },
-                    { label: "البطاريه", price: "300", color: "#fff" }
+                    { label: "طقم الجلد", price: "50", color: "#f8fafc" },
+                    { label: "البورده الورق", price: "100", color: "#f8fafc" },
+                    { label: "الانالوج", price: "100", color: "#f8fafc" },
+                    { label: "جلده الانالوج", price: "20", color: "#f8fafc" },
+                    { label: "الوش مستعمل", price: "150", color: "#f8fafc" },
+                    { label: "الوش جديد", price: "200", color: "#f8fafc" },
+                    { label: "الضهر مستعمل", price: "150", color: "#f8fafc" },
+                    { label: "الضهر جديد", price: "200", color: "#f8fafc" },
+                    { label: "الزرار ايا كان الزرار الناقص", price: "50", color: "#f8fafc" },
+                    { label: "البطاريه", price: "300", color: "#f8fafc" }
                 ]
             },
             {
                 name: "صيانة درعات PS4",
                 theme: "border-maintain",
                 items: [
-                    { label: "طقم الجلد", price: "35", color: "#fff" },
-                    { label: "جلدة الانالوج", price: "10", color: "#fff" },
-                    { label: "الانالوج", price: "80", color: "#fff" },
-                    { label: "البورده الورق", price: "50", color: "#fff" },
-                    { label: "الشاسيه", price: "70", color: "#fff" },
-                    { label: "البرسه تقريبا", price: "50", color: "#fff" },
-                    { label: "الزرار L1-L2 -R1-R2", price: "20", color: "#fff" },
-                    { label: "السوسته", price: "15", color: "#fff" },
-                    { label: "التخشينه", price: "10", color: "#fff" },
-                    { label: "الكاڤر جديد", price: "250", color: "#fff" },
-                    { label: "الوش مستعمل", price: "30", color: "#fff" },
-                    { label: "الضهر مستعمل", price: "30", color: "#fff" },
-                    { label: "Ic شحن", price: "150", color: "#fff" },
-                    { label: "البطاريه", price: "100", color: "#fff" }
+                    { label: "طقم الجلد", price: "35", color: "#f8fafc" },
+                    { label: "جلدة الانالوج", price: "10", color: "#f8fafc" },
+                    { label: "الانالوج", price: "80", color: "#f8fafc" },
+                    { label: "البورده الورق", price: "50", color: "#f8fafc" },
+                    { label: "الشاسيه", price: "70", color: "#f8fafc" },
+                    { label: "البرسه تقريبا", price: "50", color: "#f8fafc" },
+                    { label: "الزرار L1-L2 -R1-R2", price: "20", color: "#f8fafc" },
+                    { label: "السوسته", price: "15", color: "#f8fafc" },
+                    { label: "التخشينه", price: "10", color: "#f8fafc" },
+                    { label: "الكاڤر جديد", price: "250", color: "#f8fafc" },
+                    { label: "الوش مستعمل", price: "30", color: "#f8fafc" },
+                    { label: "الضهر مستعمل", price: "30", color: "#f8fafc" },
+                    { label: "Ic شحن", price: "150", color: "#f8fafc" },
+                    { label: "البطاريه", price: "100", color: "#f8fafc" }
                 ]
             },
             {
                 name: "صيانة درعات Xbox One",
                 theme: "border-xbox",
                 items: [
-                    { label: "طقم الجلد", price: "100", color: "#fff" },
-                    { label: "المسطره", price: "250", color: "#fff" },
-                    { label: "جلدة الانالوج", price: "20", color: "#fff" },
-                    { label: "الانالوج", price: "100", color: "#fff" },
-                    { label: "الشاسيه", price: "450", color: "#fff" },
-                    { label: "البطاريات", price: "250", color: "#fff" }
+                    { label: "طقم الجلد", price: "100", color: "#f8fafc" },
+                    { label: "المسطره", price: "250", color: "#f8fafc" },
+                    { label: "جلدة الانالوج", price: "20", color: "#f8fafc" },
+                    { label: "الانالوج", price: "100", color: "#f8fafc" },
+                    { label: "الشاسيه", price: "450", color: "#f8fafc" },
+                    { label: "البطاريات", price: "250", color: "#f8fafc" }
                 ]
             },
             {
                 name: "صيانة درعات Xbox Series",
                 theme: "border-xbox",
                 items: [
-                    { label: "طقم الجلد", price: "100", color: "#fff" },
-                    { label: "المسطره", price: "350", color: "#fff" },
-                    { label: "جلدة الانالوج", price: "20", color: "#fff" },
-                    { label: "الانالوج", price: "100", color: "#fff" },
-                    { label: "الشاسيه", price: "450", color: "#fff" },
-                    { label: "البطاريات", price: "250", color: "#fff" }
+                    { label: "طقم الجلد", price: "100", color: "#f8fafc" },
+                    { label: "المسطره", price: "350", color: "#f8fafc" },
+                    { label: "جلدة الانالوج", price: "20", color: "#f8fafc" },
+                    { label: "الانالوج", price: "100", color: "#f8fafc" },
+                    { label: "الشاسيه", price: "450", color: "#f8fafc" },
+                    { label: "البطاريات", price: "250", color: "#f8fafc" }
                 ]
             }
         ];
@@ -385,20 +459,19 @@
                 name: "إكسسوارات PS5",
                 theme: "border-acc",
                 items: [
-                
-                    { label: "قاعدة شحن مزدوجة", price: "600", color: "#fff" },
-                    { label: "جراب سيليكون للذراع", price: "150", color: "#fff" },
-                    { label: "طقم حماية أنالوج", price: "50", color: "#fff" }
+                    { label: "قاعدة شحن مزدوجة", price: "600", color: "#f8fafc" },
+                    { label: "جراب سيليكون للذراع", price: "150", color: "#f8fafc" },
+                    { label: "طقم حماية أنالوج", price: "50", color: "#f8fafc" }
                 ]
             },
             {
                 name: "إكسسوارات PS4",
                 theme: "border-acc",
                 items: [
-                    { label: "استاند شاحن بلاطه", price: "150", color: "#fff" },
-                    { label: "استاند شحن dube مزدوج", price: "350", color: "#fff" },
-                    { label: "استاند شحن اوريجينال", price: "1000", color: "#fff" },
-                    { label: "استاند جهاز مبرد +شحن", price: "1000", color: "#fff" }
+                    { label: "استاند شاحن بلاطه", price: "150", color: "#f8fafc" },
+                    { label: "استاند شحن dube مزدوج", price: "350", color: "#f8fafc" },
+                    { label: "استاند شحن اوريجينال", price: "1000", color: "#f8fafc" },
+                    { label: "استاند جهاز مبرد +شحن", price: "1000", color: "#f8fafc" }
                 ]
             }
         ];
@@ -461,7 +534,7 @@
             {name: "Need for Speed™ Rivals", off: "250", pr: "500", sc: "400"},
             {name: "eFootball™ 2026", off: "free", pr: "100", sc: "100"},
             {name: "PES18", off: "400", pr: "1000", sc: "800"},
-            {name: "PES19", off: "500", pr: "1800", sc: "x"},
+            {name: "PES19", off: "500", pr: "x", sc: "x"},
             {name: "PES20", off: "300", pr: "800", sc: "500"},
             {name: "PES21", off: "500", pr: "1500", sc: "1000"},
             {name: "Outlast", off: "250", pr: "600", sc: "400"},
@@ -475,7 +548,6 @@
             {name: "Resident Evil Requiem", off: "600", pr: "2200", sc: "1800"},
             {name: "Rayman® Legends", off: "200", pr: "550", sc: "400"},
             {name: "Sniper Elite 5", off: "200", pr: "600", sc: "450"},
-            {name: "Marvel’s Spider-Man 2", off: "500", pr: "1500", sc: "1200"},
             {name: "Marvel's Spider-Man: Miles Morales", off: "350", pr: "800", sc: "650"},
             {name: "Marvel's Spider-Man Remastered", off: "300", pr: "700", sc: "500"},
             {name: "TEKKEN 7", off: "250", pr: "700", sc: "500"},
@@ -618,7 +690,7 @@
 
         function formatPrice(val) {
             if (val.toLowerCase() === 'x' || val === '❌' || val === '-') return '<span class="sold-out">نفدت ❌</span>';
-            return `<span style="color: #3fb950; font-weight: bold;">${val}</span>`;
+            return `<span class="game-price-tag">${val}</span>`;
         }
 
         function renderTable(gamesArray, tbodyId) {
@@ -626,7 +698,7 @@
             gamesArray.forEach(game => {
                 let tr = document.createElement("tr");
                 tr.innerHTML = `
-                    <td style="font-weight: bold; color: #fff; text-align: left;" dir="ltr">${game.name}</td>
+                    <td style="font-weight: 800; color: #f8fafc; text-align: left;" dir="ltr">${game.name}</td>
                     <td>${formatPrice(game.off)}</td>
                     <td>${formatPrice(game.pr)}</td>
                     <td>${formatPrice(game.sc)}</td>

@@ -261,8 +261,8 @@
         .game-img {
             width: 65px; 
             height: 65px; 
-            min-width: 65px; /* يمنع انكماش الصورة */
-            flex-shrink: 0;  /* يثبت حجم الصورة مهما كان اسم اللعبة طويل */
+            min-width: 65px; 
+            flex-shrink: 0;  
             border-radius: 10px; 
             object-fit: cover;
             border: 2px solid rgba(255, 255, 255, 0.1);
@@ -278,15 +278,15 @@
         .game-name-cell {
             display: flex;
             align-items: center;
-            justify-content: flex-start; /* يضمن إن كلهم يبدأوا من نفس الخط */
+            justify-content: flex-start; 
             gap: 20px; 
             text-align: left;
             font-weight: 800;
             color: #f8fafc;
-            padding-right: 20px !important; /* مسافة مريحة من اليمين */
+            padding-right: 20px !important; 
         }
         .game-name-cell span {
-            text-align: left; /* بيضبط محاذاة الإنجليزي */
+            text-align: left; 
             width: 100%;
         }
     </style>
@@ -462,7 +462,8 @@
                     { label: "الضهر مستعمل", price: "150", color: "#f8fafc" },
                     { label: "الضهر جديد", price: "200", color: "#f8fafc" },
                     { label: "الزرار ايا كان الزرار الناقص", price: "50", color: "#f8fafc" },
-                    { label: "البطاريه", price: "300", color: "#f8fafc" }
+                    { label: "البطاريه", price: "300", color: "#f8fafc" },
+                    { label: "فلاتات الادرعة الفايف", price: "40", color: "#f8fafc" }
                 ]
             },
             {
@@ -482,7 +483,9 @@
                     { label: "الوش مستعمل", price: "30", color: "#f8fafc" },
                     { label: "الضهر مستعمل", price: "30", color: "#f8fafc" },
                     { label: "Ic شحن", price: "150", color: "#f8fafc" },
-                    { label: "البطاريه", price: "100", color: "#f8fafc" }
+                    { label: "البطاريه", price: "100", color: "#f8fafc" },
+                    { label: "فلاتة شحن فور", price: "15", color: "#f8fafc" },
+                    { label: "سوكت شحن فور", price: "55", color: "#f8fafc" }
                 ]
             },
             {
@@ -578,10 +581,10 @@
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFumxUQiUfC7_VSh0U8P90QKMeiU1aEOXkuDO-FdM4kA&s=10", name: "Hogwarts Legacy", off: "500", pr: "1000", sc: "700"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDqyoS86f8IK4RknOBhP4pEto1Za6UoBcwZ8TAXmvMSA&s", name: "Horizon Forbidden West", off: "450", pr: "1100", sc: "700"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIJfPVa1iwBWRgXkO-3a8UPzUdalIh8PozgmpBD7xAzQ&s", name: "Horizon Zero Dawn", off: "250", pr: "650", sc: "450"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGS0NFscfkO-n977e4FisYLy3wbdzwELdn9LEymH_gqw&s=10", name: "Injustice: Gods Among Us", off: "250", pr: "600", sc: "400"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGS0NFscfkO-n977e4FisYLy3wbdzwELdn9LEymH_gqw&s=10", name: "Injustice: Gods Among Us", off: "200", pr: "600", sc: "400"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd04ps92Y79WAcY-kQUwGk2a4XCjBkrPd_s9wTUgQ-pw&s=10", name: "Injustice™ 2", off: "250", pr: "700", sc: "500"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRukgWT9sKYg4xXIf1gAlFq0jBWPFE4OimDmkE4i9Ypmw&s=10", name: "Just Cause 4: Reloaded", off: "250", pr: "700", sc: "450"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1VBr-hkrLt4nd5LxWYWmAUoAAHdYb0CgCYeu_g2VkJQ&s=10", name: "Just Cause 3", off: "250", pr: "550", sc: "400"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRukgWT9sKYg4xXIf1gAlFq0jBWPFE4OimDmkE4i9Ypmw&s=10", name: "Just Cause 4: Reloaded", off: "200", pr: "700", sc: "450"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1VBr-hkrLt4nd5LxWYWmAUoAAHdYb0CgCYeu_g2VkJQ&s=10", name: "Just Cause 3", off: "200", pr: "550", sc: "400"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdKuIriJrfR5EwWLat1Xamt9qJJYWMuEcY_9HkxV9-DQ&s", name: "It Takes Two", off: "350", pr: "800", sc: "500"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgLx9oAPRDXCs3-IuIdHroBM-2rDNCrxsvKoeZ_Ch1DQ&s=10", name: "The Last Of Us™ Remastered", off: "350", pr: "800", sc: "600"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIs3fJHTMGRpZdfMH3qamLLeWG5TLdsHHc9FJgmfuJ-A&s=10", name: "LEGO", off: "250", pr: "600", sc: "400"},

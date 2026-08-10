@@ -257,31 +257,37 @@
             border-radius: 6px;
         }
 
-        /* تنسيق صورة اللعبة (بحجم أكبر) */
+        /* تنسيق صورة اللعبة والمحاذاة بالمسطرة */
         .game-img {
             width: 65px; 
             height: 65px; 
+            min-width: 65px; /* يمنع انكماش الصورة */
+            flex-shrink: 0;  /* يثبت حجم الصورة مهما كان اسم اللعبة طويل */
             border-radius: 10px; 
             object-fit: cover;
             border: 2px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-            display: block;
-            margin: 0 auto;
-            transition: 0.3s;
+            transition: transform 0.3s, border-color 0.3s;
         }
         tbody tr:hover .game-img {
             transform: scale(1.15); 
             border-color: #3b82f6;
         }
         
-        /* تنسيق عمود اسم اللعبة ليكون بجوار الصورة وتوسيع المسافة */
+        /* ضبط محاذاة عمود الصورة والاسم */
         .game-name-cell {
             display: flex;
             align-items: center;
+            justify-content: flex-start; /* يضمن إن كلهم يبدأوا من نفس الخط */
             gap: 20px; 
             text-align: left;
             font-weight: 800;
             color: #f8fafc;
+            padding-right: 20px !important; /* مسافة مريحة من اليمين */
+        }
+        .game-name-cell span {
+            text-align: left; /* بيضبط محاذاة الإنجليزي */
+            width: 100%;
         }
     </style>
 </head>
@@ -300,7 +306,7 @@
     <!-- قسم الألعاب -->
     <div id="games" class="tab-content active">
         
-        <!-- 📌👇 التعديل الجديد: شريط البحث + فلتر الترتيب 👇📌 -->
+        <!-- شريط البحث + فلتر الترتيب -->
         <div class="search-sort-container">
             <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="🔍 ابحث عن اسم اللعبة المفضل لك...">
             
@@ -580,13 +586,12 @@
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgLx9oAPRDXCs3-IuIdHroBM-2rDNCrxsvKoeZ_Ch1DQ&s=10", name: "The Last Of Us™ Remastered", off: "350", pr: "800", sc: "600"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIs3fJHTMGRpZdfMH3qamLLeWG5TLdsHHc9FJgmfuJ-A&s=10", name: "LEGO", off: "250", pr: "600", sc: "400"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwTBxN53cACjAS2nJcMBvLC0XUFyIaNBMw8ShqIfnjAA&s=10", name: "MINE CRAFT", off: "300", pr: "750", sc: "500"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTdebSsZsZRh2VWWRDD2Fs-Jvlrt6I_32Dpggae5vHzw&s=10", name: "Mortal Kombat™ 1", off: "500", pr: "1000", sc: "700"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTc2epGNWP6bQQ6s42RvMBinAa1ToeGS-99x7yeGqN6A&s=10", name: "Mortal Kombat 11", off: "350", pr: "800", sc: "650"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ6QtCf2_1CHEdyMFmK7lgCzA0USQH5g9j8RhjNJ9P4w&s", name: "Mortal Kombat XL", off: "250", pr: "600", sc: "400"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1HWq19XBBm7_2bXpN8HLLicRU4_4QV1IuLc4MZNSQig&s=10", name: "Need for Speed™ Heat", off: "300", pr: "750", sc: "500"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7vAK3U_OLiV4OBJNn9qMWiDCNvexz-jeflsQkuJe5fg&s=10", name: "Need for Speed™ Payback", off: "250", pr: "650", sc: "450"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7oZhmTvk_RD4PZJQhqqpGa7DRKVXL-ZHjIdL-_m221A&s", name: "Need for Speed™ Rivals", off: "250", pr: "500", sc: "400"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdkSKiqzHvBz5eaMxNksfpNE1M8A936OiPhn9wS23Tdw&s=10", name: "eFootball™ 2026", off: "free", pr: "100", sc: "100"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSP4ugRs0ggeokKXfjVjOn1gCVANTXzeTEH_lDhU4dRzg&s=10", name: "Need for Speed™ Rivals", off: "200", pr: "500", sc: "400"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsm-GNssTmFjNDBsySba0MPMzc9ARbUCkG_RVxDsJ0gQ&s", name: "eFootball™ 2026", off: "free", pr: "100", sc: "100"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6vTTtkZztinypa7TJGLS4oV6GaVFhVJzQX45RRMFobw&s=10", name: "PES18", off: "400", pr: "1000", sc: "800"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5HyNjsq3RV4syVeZsZCcUMo3AIWrBSbx4Cpd1xmWAnQ&s=10", name: "PES19", off: "500", pr: "x", sc: "x"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQxVJ_pSG0S7-ErS2K2UmNAhs4aUJjay_u5eopNMlq6w&s", name: "PES20", off: "200", pr: "800", sc: "500"},
@@ -597,29 +602,28 @@
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYvYFIQQafAjjoqijl-IPTdWg60XLbUTqnZU3iBDoX2Q&s", name: "RESIDENT EVIL 2", off: "300", pr: "800", sc: "600"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxzDCFdo0jSwIbg-1o2jOfUQ6vYjaGQPp4xOsFW6eK9A&s=10", name: "RESIDENT EVIL 4", off: "450", pr: "1000", sc: "700"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF8i2DVHIPQAvtTqhK3w9lJkxF21TGxWdZrkDZXLFcow&s=10", name: "RESIDENT EVIL 3", off: "300", pr: "900", sc: "650"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpZZQ7oL2PLJhfZun_gn2F96ukna45swpOmcYqR_ZCAw&s", name: "RESIDENT EVIL 7 biohazard", off: "250", pr: "700", sc: "500"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMiqijTwktlVlR16NZO9wQqeJzazXRwaQ3J3ue-AxfEA&s=10", name: "RESIDENT EVIL 7 biohazard", off: "250", pr: "700", sc: "500"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjLjSV59N324nePIXprMS-sM-DnLk58-swuoCDyzu5Xw&s", name: "Resident Evil Village", off: "350", pr: "800", sc: "600"},
             {img: "https://static.wikia.nocookie.net/residentevil/images/6/65/Biohazard_requiem_updated.jpg/revision/latest/scale-to-width-down/250?cb=20251212032808", name: "Resident Evil Requiem", off: "600", pr: "2200", sc: "1800"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGNaNEnQe49vNPNTPi759JOCCu-YgyVj1AjW03bOmZCw&s=10", name: "Rayman® Legends", off: "200", pr: "550", sc: "400"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHzeAMIJ9w6NaEbl4BAgrs7CRRNk57tqvO0uWUHUmoSg&s=10", name: "Sniper Elite 5", off: "200", pr: "600", sc: "450"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4oxDtjxPLtCQB9zMtJPMuSAZ_o3SJKghieLVmwwkTow&s=10", name: "Marvel's Spider-Man: Miles Morales", off: "350", pr: "800", sc: "650"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT72lCrBGsFYIHiMULB4X5DffMde-sMpyBaRSJNnja0SQ&s=10", name: "Marvel's Spider-Man Remastered", off: "300", pr: "700", sc: "500"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXUmUZOL3z6_ARVs9AKaSG3as1HXHomt_e8P48S_HemQ&s", name: "TEKKEN 7", off: "250", pr: "700", sc: "500"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLN8y93SHtkY142hRXgBmruI54p7dXmBbv2xVvBHaPKg&s=10", name: "Marvel's Spider-Man Remastered", off: "300", pr: "700", sc: "500"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXTvPbyBt3LUhNfPS2vDTiCPRGNBHMmH728Myf_URa3w&s=10", name: "TEKKEN 7", off: "250", pr: "700", sc: "500"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTCQ0wGDCMj_d579yI22uICzgrvTzQ5zgPaqQuPz1pvw&s=10", name: "Tennis World Tour", off: "200", pr: "500", sc: "350"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4W1vIi4zbt_L-m8Dm-VeW13p52QnV69WZld0MOIBGaA&s", name: "The Witcher 3: Wild Hunt", off: "200", pr: "800", sc: "650"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR67pTg3sf5IO75E7ZbdDGblC27VpFWKN_Yp2iu5vIsIw&s=10", name: "TOMB RIDER", off: "300", pr: "700", sc: "500"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz6dkxWBHN5JmkiMRQK-VVc5-DbvsNZE5u9vTmef-3OA&s=10", name: "UNCHARTED™ The Nathan Drake Collection", off: "200", pr: "550", sc: "450"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbrlK4kWeEy6iKCcgAqtTnz1HvPEBC1X7ERWh3dhsUXg&s=10", name: "UNCHARTED 4: A Thief’s End", off: "300", pr: "800", sc: "650"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZOLVduNqNNN_zQkl4oiN0LoYJsBG2XeFzrRp80tIkeg&s=10", name: "UNCHARTED: The Lost Legacy", off: "250", pr: "700", sc: "500"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmeu7ypRtCQLiW7qjEOojgX2AmuilW1ncEdPuniCJJlg&s", name: "Unravel Two", off: "200", pr: "500", sc: "350"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjt0w306-iFAVtkmLXUux58kGWl5PAnc1E_yaVRrkyAA&s=10", name: "Watch Dogs®: Legion", off: "250", pr: "800", sc: "600"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaYJIu8zf-fVOduqNCF2v6_p-tGXH9Rml9cjQquSs0lw&s=10", name: "WWE20", off: "250", pr: "800", sc: "600"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgPKhmn0uCjlRgt_nOxlEraJwGRB4AAsk9E9GIAiYiGw&s=10", name: "WWE22", off: "350", pr: "1000", sc: "800"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV5GPhGduVEH702Z4lzAi-hI-TQwJVOzQs-_jyIirASxIQ1h2E2FT9EHE&s=10", name: "WWE26", off: "600", pr: "2200", sc: "1800"}
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpIKEhsmOoRN0W7L9RNWEZ6pCctEIt4uqCtRyl1S1-zw&s=10", name: "TOMB RIDER", off: "300", pr: "700", sc: "500"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGSxQtC0CY15VMfdNiZDUgBG-vWlIExOiL3dteVjrl3Q&s=10", name: "UNCHARTED™ The Nathan Drake Collection", off: "200", pr: "550", sc: "450"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPLaeVN2CZZwvBncN8_E68Zvr9OOCkWr_8TrIv-2ba3Q&s=10", name: "UNCHARTED 4: A Thief’s End", off: "300", pr: "800", sc: "650"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdLBZJ22pIoNjuW9_5GHLLWCVs3j8PV3U3CsQAKE0aEw&s=10", name: "UNCHARTED: The Lost Legacy", off: "250", pr: "700", sc: "500"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP2tMnwPW80GdwqMrOUWyrmMJ2yocXi0BEcIZnSV0m0w&s=10", name: "Unravel Two", off: "200", pr: "500", sc: "350"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSExYzTMywaEfjyN3tN1Vllyhcu_VHtoI_lQrLt-6snxg&s=10", name: "Watch Dogs®: Legion", off: "250", pr: "800", sc: "600"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh1Qc7NPtCIpwTG_GYBxhjuSyldjzRcPT4TgEoP3YEhw&s=10", name: "WWE20", off: "250", pr: "800", sc: "600"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgPKhmn0uCjlRgt_nOxlEraJwGRB4AAsk9E9GIAiYiGw&s=10", name: "WWE22", off: "350", pr: "1000", sc: "800"}
         ];
 
         // ========================================================================
-        // 🎮👇 [ هنا تعديل أسعار ألعاب PS4 ] 👇🎮
+        // 🎮👇 [ هنا تعديل أسعار ألعاب PS4 مع خانة الصورة ] 👇🎮
         // ========================================================================
         const ps4Games = [
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRASQZie24QqGQMuW1DjWqm5AjLRndqwl9jKeY608zKuA&s=10", name: "FC 26", off: "350", pr: "1000", sc: "250"},
@@ -647,8 +651,8 @@
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkTAKoqV92-WXTrDUQs-J8jhIo0zv-jZruDp1K9ObVkA&s=10", name: "dragon ball", off: "350", pr: "x", sc: "x"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDlfj65cea45izrdebE_sgP_JTf4mM5PxQ60aGlNgsPA&s", name: "FAR CRY 6", off: "400", pr: "1000", sc: "700"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7pnINcPLHofHDdhhNtUqkj7my-_L4smy5koNTRb55cg&s", name: "FC25", off: "250", pr: "700", sc: "400"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy4093mnaLfzGq98kKle4wdF36sunC4VHT7JcUFiApJw&s", name: "FIFA24", off: "250", pr: "600", sc: "300"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-a7ipohiuJD4ZraPMxrwibyNt1DqqcnULyYPeC9Euuw&s=10", name: "Ghost of Tsushima", off: "450", pr: "1200", sc: "850"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy4093mnaLfzGq98kKle4wdF36sunC4VHT7JcUFiApJw&s", name: "FIFA 24", off: "250", pr: "600", sc: "300"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0shKS-nJtTDOcF1eloC-dMxrdyKqyHxVoVofMreyRnw&s=10", name: "Ghost of Tsushima", off: "450", pr: "1200", sc: "850"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDF551Zxajw7ZP43icJbot8ddRmfe32pZLyQfG4xKNPQ&s=10", name: "God of War", off: "350", pr: "800", sc: "600"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROx7RH4DFS2dI3UHIoIwXBQI2FpzWpBbA9Z3Gm-PJFcA&s", name: "God of War Ragnarök", off: "400", pr: "1000", sc: "750"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_-GDdbOAdAs_Jndd2pey_s-Qvi2HK06YEnD_TjnYh1g&s=10", name: "GRIP Digital", off: "300", pr: "650", sc: "500"},
@@ -683,6 +687,7 @@
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF8i2DVHIPQAvtTqhK3w9lJkxF21TGxWdZrkDZXLFcow&s=10", name: "RESIDENT EVIL 3", off: "300", pr: "900", sc: "650"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMiqijTwktlVlR16NZO9wQqeJzazXRwaQ3J3ue-AxfEA&s=10", name: "RESIDENT EVIL 7 biohazard", off: "250", pr: "700", sc: "500"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjLjSV59N324nePIXprMS-sM-DnLk58-swuoCDyzu5Xw&s", name: "Resident Evil Village", off: "350", pr: "800", sc: "600"},
+            {img: "https://static.wikia.nocookie.net/residentevil/images/6/65/Biohazard_requiem_updated.jpg/revision/latest/scale-to-width-down/250?cb=20251212032808", name: "Resident Evil Requiem", off: "600", pr: "2200", sc: "1800"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGNaNEnQe49vNPNTPi759JOCCu-YgyVj1AjW03bOmZCw&s=10", name: "Rayman® Legends", off: "200", pr: "550", sc: "400"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHzeAMIJ9w6NaEbl4BAgrs7CRRNk57tqvO0uWUHUmoSg&s=10", name: "Sniper Elite 5", off: "200", pr: "600", sc: "450"},
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4oxDtjxPLtCQB9zMtJPMuSAZ_o3SJKghieLVmwwkTow&s=10", name: "Marvel's Spider-Man: Miles Morales", off: "350", pr: "800", sc: "650"},
@@ -704,7 +709,7 @@
         // (متعدلش حاجة هنا) كود التشغيل الأساسي للموقع (المحرك)
         // ========================================================================
         
-        // 📌 التعديل الجديد: حفظ نسخة من الألعاب لفلتر الترتيب
+        // 📌 حفظ نسخة من الألعاب لفلتر الترتيب
         const originalPs5Games = [...ps5Games];
         const originalPs4Games = [...ps4Games];
 
@@ -748,7 +753,7 @@
 
         function renderTable(gamesArray, tbodyId) {
             const tbody = document.getElementById(tbodyId);
-            tbody.innerHTML = ''; // إفراغ الجدول قبل إعادة الرسم (عشان الفلتر يشتغل صح)
+            tbody.innerHTML = ''; 
             
             gamesArray.forEach(game => {
                 let imgSrc = game.img !== "" ? game.img : `https://ui-avatars.com/api/?name=${encodeURIComponent(game.name)}&background=1e293b&color=fff&size=100`;
@@ -767,7 +772,7 @@
             });
         }
 
-        // 📌 التعديل الجديد: وظيفة ترتيب الألعاب
+        // وظيفة ترتيب الألعاب
         function applySort() {
             const sortType = document.getElementById('sortGames').value;
             

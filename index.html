@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GAME SHOP STORE</title>
+    <!-- استدعاء خط احترافي للموقع -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         /* ================================== */
@@ -38,6 +39,7 @@
             font-size: 38px;
             letter-spacing: 3px;
             margin-bottom: 40px; 
+            /* تأثير التدرج اللوني للعنوان */
             background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -120,7 +122,7 @@
         input[type="text"]::placeholder { color: #64748b; }
 
         /* ================================== */
-        /* تصميم الكروت */
+        /* تصميم الكروت (3D & Hover Effects) */
         /* ================================== */
         .grid-container {
             display: grid;
@@ -152,6 +154,7 @@
             border-color: rgba(255,255,255,0.15);
         }
         
+        /* تدرجات ألوان الخطوط العلوية للكروت */
         .border-ps5::before { background: linear-gradient(90deg, #e2e8f0, #94a3b8); }
         .border-ps4::before { background: linear-gradient(90deg, #1d4ed8, #3b82f6); }
         .border-xbox::before { background: linear-gradient(90deg, #16a34a, #22c55e); } 
@@ -184,7 +187,7 @@
         .item-price { font-weight: 800; color: #4ade80; font-size: 18px; }
 
         /* ================================== */
-        /* تصميم جداول الألعاب والصور */
+        /* تصميم جداول الألعاب (شكل حديث) */
         /* ================================== */
         .tables-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
         @media (max-width: 1100px) { .tables-wrapper { grid-template-columns: 1fr; } }
@@ -212,6 +215,7 @@
         
         .sub-header { background-color: rgba(0,0,0,0.3); color: #cbd5e1; font-size: 14px; font-weight: 800;}
         
+        /* تلوين السطور وتأثيرات الهوفر */
         tbody tr:nth-child(odd) { background-color: transparent; }
         tbody tr:nth-child(even) { background-color: rgba(255,255,255,0.02); }
         tbody tr:hover { background-color: rgba(59, 130, 246, 0.1); cursor: default;} 
@@ -236,11 +240,11 @@
             border-radius: 6px;
         }
 
-        /* تنسيق صورة اللعبة */
+        /* تنسيق صورة اللعبة (بحجم أكبر) */
         .game-img {
-            width: 45px;
-            height: 45px;
-            border-radius: 8px;
+            width: 65px; /* تم التكبير لـ 65 بيكسل */
+            height: 65px; /* تم التكبير لـ 65 بيكسل */
+            border-radius: 10px; /* زيادة دائرية الحواف قليلاً لتناسب الحجم الأكبر */
             object-fit: cover;
             border: 2px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 2px 8px rgba(0,0,0,0.5);
@@ -249,15 +253,15 @@
             transition: 0.3s;
         }
         tbody tr:hover .game-img {
-            transform: scale(1.1);
+            transform: scale(1.15); /* جعل تأثير التكبير عند الوقوف بالماوس أوضح */
             border-color: #3b82f6;
         }
         
-        /* تنسيق عمود اسم اللعبة ليكون بجوار الصورة */
+        /* تنسيق عمود اسم اللعبة ليكون بجوار الصورة وتوسيع المسافة */
         .game-name-cell {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px; /* تم تكبير المسافة بين الصورة والاسم */
             text-align: left;
             font-weight: 800;
             color: #f8fafc;
@@ -289,7 +293,6 @@
                 <table class="ps5-table">
                     <thead>
                         <tr>
-                            <!-- تم إضافة عمود جديد للصورة هنا -->
                             <th rowspan="2" style="width: 50%;">اللعبة</th>
                             <th colspan="3">الأسعار</th>
                         </tr>
@@ -505,7 +508,6 @@
         // ========================================================================
         // 🎮👇 [ هنا تعديل أسعار ألعاب PS5 مع خانة الصورة ] 👇🎮
         // ========================================================================
-        // ضيف لينك الصورة بين علامتين التنصيص في خانة img
         const ps5Games = [
             {img: "https://upload.wikimedia.org/wikipedia/en/e/eb/EA_Sports_FC_24_cover.jpg", name: "FC 26", off: "350", pr: "1000", sc: "250"},
             {img: "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png", name: "GTA", off: "300", pr: "800", sc: "500"},
@@ -623,6 +625,7 @@
             {img: "", name: "FC25", off: "250", pr: "700", sc: "400"},
             {img: "", name: "FIFA 24", off: "250", pr: "600", sc: "300"},
             {img: "", name: "Forza Horizon 5 Standard Edition", off: "500", pr: "1800", sc: "1400"},
+            {img: "", name: "Ghost of Yōte", off: "500", pr: "2000", sc: "1500"},
             {img: "", name: "Ghost of Tsushima", off: "450", pr: "1200", sc: "850"},
             {img: "", name: "God of War", off: "350", pr: "800", sc: "600"},
             {img: "", name: "God of War Ragnarök", off: "400", pr: "1000", sc: "750"},

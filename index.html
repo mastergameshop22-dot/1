@@ -94,13 +94,18 @@
         }
 
         /* ================================== */
-        /* شريط البحث المضيء */
+        /* شريط البحث وفلتر الترتيب المضيء */
         /* ================================== */
-        .search-container { text-align: center; margin-bottom: 40px; }
-        input[type="text"] { 
+        .search-sort-container { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            gap: 15px; 
+            flex-wrap: wrap; 
+            margin-bottom: 40px; 
+        }
+        input[type="text"], select.sort-select { 
             padding: 18px 25px; 
-            width: 100%; 
-            max-width: 550px; 
             border: 1px solid var(--border-light); 
             border-radius: 50px; 
             background: rgba(30, 41, 59, 0.8);
@@ -109,15 +114,27 @@
             font-family: 'Cairo', sans-serif;
             outline: none; 
             font-size: 16px; 
-            text-align: center; 
             transition: all 0.4s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        input[type="text"]:focus { 
+        input[type="text"] {
+            flex: 1;
+            max-width: 500px;
+            text-align: center;
+        }
+        select.sort-select {
+            cursor: pointer;
+            font-weight: 600;
+        }
+        input[type="text"]:focus, select.sort-select:focus { 
             border-color: #3b82f6; 
             box-shadow: 0 0 25px var(--accent-glow); 
             transform: scale(1.02);
             background: var(--card-bg);
+        }
+        select.sort-select option {
+            background: var(--card-bg);
+            color: #fff;
         }
         input[type="text"]::placeholder { color: #64748b; }
 
@@ -242,9 +259,9 @@
 
         /* تنسيق صورة اللعبة (بحجم أكبر) */
         .game-img {
-            width: 65px; /* تم التكبير لـ 65 بيكسل */
-            height: 65px; /* تم التكبير لـ 65 بيكسل */
-            border-radius: 10px; /* زيادة دائرية الحواف قليلاً لتناسب الحجم الأكبر */
+            width: 65px; 
+            height: 65px; 
+            border-radius: 10px; 
             object-fit: cover;
             border: 2px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 2px 8px rgba(0,0,0,0.5);
@@ -253,7 +270,7 @@
             transition: 0.3s;
         }
         tbody tr:hover .game-img {
-            transform: scale(1.15); /* جعل تأثير التكبير عند الوقوف بالماوس أوضح */
+            transform: scale(1.15); 
             border-color: #3b82f6;
         }
         
@@ -261,7 +278,7 @@
         .game-name-cell {
             display: flex;
             align-items: center;
-            gap: 20px; /* تم تكبير المسافة بين الصورة والاسم */
+            gap: 20px; 
             text-align: left;
             font-weight: 800;
             color: #f8fafc;
@@ -282,8 +299,16 @@
 
     <!-- قسم الألعاب -->
     <div id="games" class="tab-content active">
-        <div class="search-container">
+        
+        <!-- 📌👇 التعديل الجديد: شريط البحث + فلتر الترتيب 👇📌 -->
+        <div class="search-sort-container">
             <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="🔍 ابحث عن اسم اللعبة المفضل لك...">
+            
+            <select id="sortGames" class="sort-select" onchange="applySort()">
+                <option value="default">↕️ ترتيب الألعاب (الافتراضي)</option>
+                <option value="low">🔽 السعر: من الأقل للأغلى</option>
+                <option value="high">🔼 السعر: من الأغلى للأقل</option>
+            </select>
         </div>
 
         <div class="tables-wrapper">
@@ -506,7 +531,7 @@
         ];
 
         // ========================================================================
-        // 🎮👇 [ هنا تعديل أسعار ألعاب PS5 مع خانة الصورة ] 👇🎮
+        // 🎮👇 [ هنا تعديل أسعار ألعاب PS5 ] 👇🎮
         // ========================================================================
         const ps5Games = [
             {img: "https://upload.wikimedia.org/wikipedia/en/e/eb/EA_Sports_FC_24_cover.jpg", name: "FC 26", off: "350", pr: "1000", sc: "250"},
@@ -594,7 +619,7 @@
         ];
 
         // ========================================================================
-        // 🎮👇 [ هنا تعديل أسعار ألعاب PS4 مع خانة الصورة ] 👇🎮
+        // 🎮👇 [ هنا تعديل أسعار ألعاب PS4 ] 👇🎮
         // ========================================================================
         const ps4Games = [
             {img: "https://upload.wikimedia.org/wikipedia/en/e/eb/EA_Sports_FC_24_cover.jpg", name: "FC 26", off: "350", pr: "1000", sc: "250"},
@@ -665,13 +690,13 @@
             {img: "", name: "Marvel's Spider-Man Remastered", off: "300", pr: "700", sc: "500"},
             {img: "", name: "TEKKEN 7", off: "250", pr: "700", sc: "500"},
             {img: "", name: "Tennis World Tour", off: "200", pr: "500", sc: "350"},
-            {img: "", name: "The Witcher 3: Wild Hunt", off: "350", pr: "800", sc: "650"},
+            {img: "", name: "The Witcher 3: Wild Hunt", off: "200", pr: "800", sc: "650"},
             {img: "", name: "TOMB RIDER", off: "300", pr: "700", sc: "500"},
             {img: "", name: "UNCHARTED™ The Nathan Drake Collection", off: "200", pr: "550", sc: "450"},
             {img: "", name: "UNCHARTED 4: A Thief’s End", off: "300", pr: "800", sc: "650"},
             {img: "", name: "UNCHARTED: The Lost Legacy", off: "250", pr: "700", sc: "500"},
             {img: "", name: "Unravel Two", off: "200", pr: "500", sc: "350"},
-            {img: "", name: "Watch Dogs®: Legion", off: "350", pr: "800", sc: "600"},
+            {img: "", name: "Watch Dogs®: Legion", off: "250", pr: "800", sc: "600"},
             {img: "", name: "WWE20", off: "250", pr: "800", sc: "600"},
             {img: "", name: "WWE22", off: "350", pr: "1000", sc: "800"}
         ];
@@ -680,6 +705,10 @@
         // (متعدلش حاجة هنا) كود التشغيل الأساسي للموقع (المحرك)
         // ========================================================================
         
+        // 📌 التعديل الجديد: حفظ نسخة من الألعاب لفلتر الترتيب
+        const originalPs5Games = [...ps5Games];
+        const originalPs4Games = [...ps4Games];
+
         function renderCards(dataArray, containerId) {
             const container = document.getElementById(containerId);
             dataArray.forEach(group => {
@@ -720,8 +749,9 @@
 
         function renderTable(gamesArray, tbodyId) {
             const tbody = document.getElementById(tbodyId);
+            tbody.innerHTML = ''; // إفراغ الجدول قبل إعادة الرسم (عشان الفلتر يشتغل صح)
+            
             gamesArray.forEach(game => {
-                // نظام الصور التلقائي
                 let imgSrc = game.img !== "" ? game.img : `https://ui-avatars.com/api/?name=${encodeURIComponent(game.name)}&background=1e293b&color=fff&size=100`;
                 
                 let tr = document.createElement("tr");
@@ -738,6 +768,44 @@
             });
         }
 
+        // 📌 التعديل الجديد: وظيفة ترتيب الألعاب
+        function applySort() {
+            const sortType = document.getElementById('sortGames').value;
+            
+            let sortedPs5 = [...originalPs5Games];
+            let sortedPs4 = [...originalPs4Games];
+
+            if(sortType !== 'default') {
+                sortedPs5 = sortArray(sortedPs5, sortType);
+                sortedPs4 = sortArray(sortedPs4, sortType);
+            }
+
+            renderTable(sortedPs5, "ps5Body");
+            renderTable(sortedPs4, "ps4Body");
+            searchTable(); 
+        }
+
+        function sortArray(arr, type) {
+            return arr.sort((a, b) => {
+                let priceA = parseInt(a.off);
+                let priceB = parseInt(b.off);
+                
+                let isNaNA = isNaN(priceA);
+                let isNaNB = isNaN(priceB);
+
+                if(isNaNA && isNaNB) return 0;
+                if(isNaNA) return 1;
+                if(isNaNB) return -1;
+
+                if(type === 'low') {
+                    return priceA - priceB;
+                } else {
+                    return priceB - priceA;
+                }
+            });
+        }
+
+        // الرسم الأولي للجداول
         renderTable(ps5Games, "ps5Body");
         renderTable(ps4Games, "ps4Body");
 
@@ -748,7 +816,6 @@
             tables.forEach(tbody => {
                 let tr = tbody.getElementsByTagName("tr");
                 for (let i = 0; i < tr.length; i++) {
-                    // التعديل هنا عشان البحث يقرأ الاسم من جنب الصورة
                     let td = tr[i].getElementsByTagName("td")[0];
                     if (td) {
                         let span = td.getElementsByTagName("span")[0];

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GAME SHOP STORE</title>
-    <!-- استدعاء خط احترافي للموقع -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         /* ================================== */
@@ -39,7 +38,6 @@
             font-size: 38px;
             letter-spacing: 3px;
             margin-bottom: 40px; 
-            /* تأثير التدرج اللوني للعنوان */
             background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -122,7 +120,7 @@
         input[type="text"]::placeholder { color: #64748b; }
 
         /* ================================== */
-        /* تصميم الكروت (3D & Hover Effects) */
+        /* تصميم الكروت */
         /* ================================== */
         .grid-container {
             display: grid;
@@ -154,7 +152,6 @@
             border-color: rgba(255,255,255,0.15);
         }
         
-        /* تدرجات ألوان الخطوط العلوية للكروت */
         .border-ps5::before { background: linear-gradient(90deg, #e2e8f0, #94a3b8); }
         .border-ps4::before { background: linear-gradient(90deg, #1d4ed8, #3b82f6); }
         .border-xbox::before { background: linear-gradient(90deg, #16a34a, #22c55e); } 
@@ -187,10 +184,10 @@
         .item-price { font-weight: 800; color: #4ade80; font-size: 18px; }
 
         /* ================================== */
-        /* تصميم جداول الألعاب (شكل حديث) */
+        /* تصميم جداول الألعاب والصور */
         /* ================================== */
         .tables-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
-        @media (max-width: 900px) { .tables-wrapper { grid-template-columns: 1fr; } }
+        @media (max-width: 1100px) { .tables-wrapper { grid-template-columns: 1fr; } }
 
         .table-container { 
             background-color: var(--card-bg); 
@@ -211,11 +208,10 @@
         .title-ps4 { background: linear-gradient(135deg, #172554, #1d4ed8); }
 
         table { width: 100%; border-collapse: collapse; text-align: center; }
-        th, td { padding: 15px; border-bottom: 1px solid var(--border-light); font-size: 15px;}
+        th, td { padding: 15px 10px; border-bottom: 1px solid var(--border-light); font-size: 15px; vertical-align: middle;}
         
         .sub-header { background-color: rgba(0,0,0,0.3); color: #cbd5e1; font-size: 14px; font-weight: 800;}
         
-        /* تلوين السطور وتأثيرات الهوفر */
         tbody tr:nth-child(odd) { background-color: transparent; }
         tbody tr:nth-child(even) { background-color: rgba(255,255,255,0.02); }
         tbody tr:hover { background-color: rgba(59, 130, 246, 0.1); cursor: default;} 
@@ -239,6 +235,33 @@
             padding: 4px 8px;
             border-radius: 6px;
         }
+
+        /* تنسيق صورة اللعبة */
+        .game-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            display: block;
+            margin: 0 auto;
+            transition: 0.3s;
+        }
+        tbody tr:hover .game-img {
+            transform: scale(1.1);
+            border-color: #3b82f6;
+        }
+        
+        /* تنسيق عمود اسم اللعبة ليكون بجوار الصورة */
+        .game-name-cell {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: left;
+            font-weight: 800;
+            color: #f8fafc;
+        }
     </style>
 </head>
 <body>
@@ -260,12 +283,14 @@
         </div>
 
         <div class="tables-wrapper">
+            <!-- جدول ألعاب PS5 -->
             <div class="table-container">
                 <div class="section-title title-ps5">ألعاب PS5</div>
                 <table class="ps5-table">
                     <thead>
                         <tr>
-                            <th rowspan="2" style="width: 40%;">اسم اللعبة</th>
+                            <!-- تم إضافة عمود جديد للصورة هنا -->
+                            <th rowspan="2" style="width: 50%;">اللعبة</th>
                             <th colspan="3">الأسعار</th>
                         </tr>
                         <tr>
@@ -278,12 +303,13 @@
                 </table>
             </div>
 
+            <!-- جدول ألعاب PS4 -->
             <div class="table-container">
                 <div class="section-title title-ps4">ألعاب PS4</div>
                 <table class="ps4-table">
                     <thead>
                         <tr>
-                            <th rowspan="2" style="width: 40%;">اسم اللعبة</th>
+                            <th rowspan="2" style="width: 50%;">اللعبة</th>
                             <th colspan="3">الأسعار</th>
                         </tr>
                         <tr>
@@ -477,178 +503,178 @@
         ];
 
         // ========================================================================
-        // 🎮👇 [ هنا تعديل أسعار ألعاب PS5 ] 👇🎮
+        // 🎮👇 [ هنا تعديل أسعار ألعاب PS5 مع خانة الصورة ] 👇🎮
         // ========================================================================
+        // ضيف لينك الصورة بين علامتين التنصيص في خانة img
         const ps5Games = [
-            {name: "FC26", off: "350", pr: "1000", sc: "250"},
-            {name: "GTA", off: "300", pr: "800", sc: "500"},
-            {name: "OPS4", off: "300", pr: "700", sc: "500"},
-            {name: "OPS3", off: "350", pr: "800", sc: "650"},
-            {name: "MARVIL ADVENGAR", off: "450", pr: "1000", sc: "700"},
-            {name: "assassin's creed MIRAGE", off: "450", pr: "1000", sc: "750"},
-            {name: "Assassin’s Creed The Ezio Collection", off: "250", pr: "650", sc: "450"},
-            {name: "Assassin’s Creed Shadows", off: "500", pr: "2000", sc: "1500"},
-            {name: "Assassin's Creed Valhalla", off: "400", pr: "1000", sc: "700"},
-            {name: "assassin's creed origins", off: "250", pr: "800", sc: "500"},
-            {name: "assassin's creed odyssey", off: "250", pr: "800", sc: "500"},
-            {name: "assassin's creed BLACk flag", off: "x", pr: "x", sc: "x"},
-            {name: "a way out", off: "300", pr: "600", sc: "450"},
-            {name: "Astro Bot", off: "500", pr: "1500", sc: "1200"},
-            {name: "BATMAN", off: "250", pr: "700", sc: "500"},
-            {name: "battlefieldV", off: "250", pr: "700", sc: "500"},
-            {name: "crash team racing", off: "350", pr: "800", sc: "600"},
-            {name: "crash bandicoot", off: "300", pr: "700", sc: "500"},
-            {name: "CONTROL", off: "400", pr: "950", sc: "650"},
-            {name: "Cyberpunk 2077", off: "400", pr: "900", sc: "600"},
-            {name: "daysgone", off: "350", pr: "900", sc: "700"},
-            {name: "DETROIT", off: "300", pr: "800", sc: "600"},
-            {name: "Devil May Cry 5", off: "250", pr: "700", sc: "500"},
-            {name: "Elden ring", off: "500", pr: "1200", sc: "900"},
-            {name: "dragon ball", off: "350", pr: "x", sc: "x"},
-            {name: "FAR CRY 6", off: "400", pr: "1000", sc: "700"},
-            {name: "FC25", off: "250", pr: "700", sc: "400"},
-            {name: "FIFA 24", off: "250", pr: "600", sc: "300"},
-            {name: "Forza Horizon 5 Standard Edition", off: "500", pr: "1800", sc: "1400"},
-            {name: "Ghost of Tsushima", off: "450", pr: "1200", sc: "850"},
-            {name: "God of War", off: "350", pr: "800", sc: "600"},
-            {name: "God of War Ragnarök", off: "400", pr: "1000", sc: "750"},
-            {name: "GRIP Digital", off: "300", pr: "650", sc: "500"},
-            {name: "HITMAN 3", off: "450", pr: "900", sc: "700"},
-            {name: "HITMAN 2", off: "300", pr: "700", sc: "600"},
-            {name: "Hogwarts Legacy", off: "500", pr: "900", sc: "700"},
-            {name: "Horizon Forbidden West", off: "450", pr: "1100", sc: "700"},
-            {name: "Horizon Zero Dawn", off: "250", pr: "650", sc: "450"},
-            {name: "Injustice: Gods Among Us", off: "250", pr: "600", sc: "400"},
-            {name: "Injustice™ 2", off: "250", pr: "700", sc: "500"},
-            {name: "Just Cause 4: Reloaded", off: "250", pr: "700", sc: "450"},
-            {name: "Just Cause 3", off: "250", pr: "550", sc: "400"},
-            {name: "It Takes Two", off: "350", pr: "800", sc: "500"},
-            {name: "The Last Of Us™ Remastered", off: "350", pr: "800", sc: "600"},
-            {name: "LEGO", off: "250", pr: "600", sc: "400"},
-            {name: "MINE CRAFT", off: "300", pr: "750", sc: "500"},
-            {name: "Mortal Kombat™ 1", off: "500", pr: "1000", sc: "700"},
-            {name: "Mortal Kombat 11", off: "350", pr: "800", sc: "650"},
-            {name: "Mortal Kombat XL", off: "250", pr: "600", sc: "400"},
-            {name: "Need for Speed™ Heat", off: "300", pr: "750", sc: "500"},
-            {name: "Need for Speed™ Payback", off: "250", pr: "650", sc: "450"},
-            {name: "Need for Speed™ Rivals", off: "250", pr: "500", sc: "400"},
-            {name: "eFootball™ 2026", off: "free", pr: "100", sc: "100"},
-            {name: "PES18", off: "400", pr: "1000", sc: "800"},
-            {name: "PES19", off: "500", pr: "x", sc: "x"},
-            {name: "PES20", off: "300", pr: "800", sc: "500"},
-            {name: "PES21", off: "500", pr: "1500", sc: "1000"},
-            {name: "Outlast", off: "250", pr: "600", sc: "400"},
-            {name: "Ratchet & Clank™", off: "250", pr: "550", sc: "450"},
-            {name: "Red Dead Redemption 2", off: "350", pr: "900", sc: "700"},
-            {name: "RESIDENT EVIL 2", off: "300", pr: "800", sc: "600"},
-            {name: "RESIDENT EVIL 4", off: "450", pr: "1000", sc: "700"},
-            {name: "RESIDENT EVIL 3", off: "300", pr: "900", sc: "650"},
-            {name: "RESIDENT EVIL 7 biohazard", off: "250", pr: "700", sc: "500"},
-            {name: "Resident Evil Village", off: "350", pr: "800", sc: "600"},
-            {name: "Resident Evil Requiem", off: "600", pr: "2200", sc: "1800"},
-            {name: "Rayman® Legends", off: "200", pr: "550", sc: "400"},
-            {name: "Sniper Elite 5", off: "200", pr: "600", sc: "450"},
-            {name: "Marvel's Spider-Man: Miles Morales", off: "350", pr: "800", sc: "650"},
-            {name: "Marvel's Spider-Man Remastered", off: "300", pr: "700", sc: "500"},
-            {name: "TEKKEN 7", off: "250", pr: "700", sc: "500"},
-            {name: "Tennis World Tour", off: "200", pr: "500", sc: "350"},
-            {name: "The Witcher 3: Wild Hunt", off: "350", pr: "800", sc: "650"},
-            {name: "TOMB RIDER", off: "300", pr: "700", sc: "500"},
-            {name: "UNCHARTED™ The Nathan Drake Collection", off: "200", pr: "550", sc: "450"},
-            {name: "UNCHARTED 4: A Thief’s End", off: "300", pr: "800", sc: "650"},
-            {name: "UNCHARTED: The Lost Legacy", off: "250", pr: "700", sc: "500"},
-            {name: "Unravel Two", off: "200", pr: "500", sc: "350"},
-            {name: "Watch Dogs®: Legion", off: "350", pr: "800", sc: "600"},
-            {name: "WWE20", off: "250", pr: "800", sc: "600"},
-            {name: "WWE22", off: "350", pr: "1000", sc: "800"},
-            {name: "WWE26", off: "600", pr: "2200", sc: "1800"}
+            {img: "https://upload.wikimedia.org/wikipedia/en/e/eb/EA_Sports_FC_24_cover.jpg", name: "FC 26", off: "350", pr: "1000", sc: "250"},
+            {img: "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png", name: "GTA", off: "300", pr: "800", sc: "500"},
+            {img: "", name: "OPS4", off: "300", pr: "700", sc: "500"},
+            {img: "", name: "OPS3", off: "350", pr: "800", sc: "650"},
+            {img: "", name: "MARVIL ADVENGAR", off: "450", pr: "1000", sc: "700"},
+            {img: "", name: "assassin's creed MIRAGE", off: "450", pr: "1000", sc: "750"},
+            {img: "", name: "Assassin’s Creed The Ezio Collection", off: "250", pr: "650", sc: "450"},
+            {img: "", name: "Assassin’s Creed Shadows", off: "500", pr: "2000", sc: "1500"},
+            {img: "", name: "Assassin's Creed Valhalla", off: "400", pr: "1000", sc: "700"},
+            {img: "", name: "assassin's creed origins", off: "250", pr: "800", sc: "500"},
+            {img: "", name: "assassin's creed odyssey", off: "250", pr: "800", sc: "500"},
+            {img: "", name: "assassin's creed BLACk flag", off: "x", pr: "x", sc: "x"},
+            {img: "", name: "a way out", off: "300", pr: "600", sc: "450"},
+            {img: "", name: "Astro Bot", off: "500", pr: "1500", sc: "1200"},
+            {img: "", name: "BATMAN", off: "250", pr: "700", sc: "500"},
+            {img: "", name: "battlefieldV", off: "250", pr: "700", sc: "500"},
+            {img: "", name: "crash team racing", off: "350", pr: "800", sc: "600"},
+            {img: "", name: "crash bandicoot", off: "300", pr: "700", sc: "500"},
+            {img: "", name: "CONTROL", off: "400", pr: "950", sc: "650"},
+            {img: "", name: "Cyberpunk 2077", off: "400", pr: "900", sc: "600"},
+            {img: "", name: "daysgone", off: "350", pr: "900", sc: "700"},
+            {img: "", name: "DETROIT", off: "300", pr: "800", sc: "600"},
+            {img: "", name: "Devil May Cry 5", off: "250", pr: "700", sc: "500"},
+            {img: "", name: "Elden ring", off: "500", pr: "1200", sc: "900"},
+            {img: "", name: "dragon ball", off: "350", pr: "x", sc: "x"},
+            {img: "", name: "FAR CRY 6", off: "400", pr: "1000", sc: "700"},
+            {img: "", name: "FC25", off: "250", pr: "700", sc: "400"},
+            {img: "", name: "FIFA 24", off: "250", pr: "600", sc: "300"},
+            {img: "", name: "Forza Horizon 5 Standard Edition", off: "500", pr: "1800", sc: "1400"},
+            {img: "", name: "Ghost of Tsushima", off: "450", pr: "1200", sc: "850"},
+            {img: "", name: "God of War", off: "350", pr: "800", sc: "600"},
+            {img: "", name: "God of War Ragnarök", off: "400", pr: "1000", sc: "750"},
+            {img: "", name: "GRIP Digital", off: "300", pr: "650", sc: "500"},
+            {img: "", name: "HITMAN 3", off: "450", pr: "900", sc: "700"},
+            {img: "", name: "HITMAN 2", off: "300", pr: "700", sc: "600"},
+            {img: "", name: "Hogwarts Legacy", off: "500", pr: "900", sc: "700"},
+            {img: "", name: "Horizon Forbidden West", off: "450", pr: "1100", sc: "700"},
+            {img: "", name: "Horizon Zero Dawn", off: "250", pr: "650", sc: "450"},
+            {img: "", name: "Injustice: Gods Among Us", off: "250", pr: "600", sc: "400"},
+            {img: "", name: "Injustice™ 2", off: "250", pr: "700", sc: "500"},
+            {img: "", name: "Just Cause 4: Reloaded", off: "250", pr: "700", sc: "450"},
+            {img: "", name: "Just Cause 3", off: "250", pr: "550", sc: "400"},
+            {img: "", name: "It Takes Two", off: "350", pr: "800", sc: "500"},
+            {img: "", name: "The Last Of Us™ Remastered", off: "350", pr: "800", sc: "600"},
+            {img: "", name: "LEGO", off: "250", pr: "600", sc: "400"},
+            {img: "", name: "MINE CRAFT", off: "300", pr: "750", sc: "500"},
+            {img: "", name: "Mortal Kombat™ 1", off: "500", pr: "1000", sc: "700"},
+            {img: "", name: "Mortal Kombat 11", off: "350", pr: "800", sc: "650"},
+            {img: "", name: "Mortal Kombat XL", off: "250", pr: "600", sc: "400"},
+            {img: "", name: "Need for Speed™ Heat", off: "300", pr: "750", sc: "500"},
+            {img: "", name: "Need for Speed™ Payback", off: "250", pr: "650", sc: "450"},
+            {img: "", name: "Need for Speed™ Rivals", off: "250", pr: "500", sc: "400"},
+            {img: "", name: "eFootball™ 2026", off: "free", pr: "100", sc: "100"},
+            {img: "", name: "PES18", off: "400", pr: "1000", sc: "800"},
+            {img: "", name: "PES19", off: "500", pr: "x", sc: "x"},
+            {img: "", name: "PES20", off: "300", pr: "800", sc: "500"},
+            {img: "", name: "PES21", off: "500", pr: "1500", sc: "1000"},
+            {img: "", name: "Outlast", off: "250", pr: "600", sc: "400"},
+            {img: "", name: "Ratchet & Clank™", off: "250", pr: "550", sc: "450"},
+            {img: "", name: "Red Dead Redemption 2", off: "350", pr: "900", sc: "700"},
+            {img: "", name: "RESIDENT EVIL 2", off: "300", pr: "800", sc: "600"},
+            {img: "", name: "RESIDENT EVIL 4", off: "450", pr: "1000", sc: "700"},
+            {img: "", name: "RESIDENT EVIL 3", off: "300", pr: "900", sc: "650"},
+            {img: "", name: "RESIDENT EVIL 7 biohazard", off: "250", pr: "700", sc: "500"},
+            {img: "", name: "Resident Evil Village", off: "350", pr: "800", sc: "600"},
+            {img: "", name: "Resident Evil Requiem", off: "600", pr: "2200", sc: "1800"},
+            {img: "", name: "Rayman® Legends", off: "200", pr: "550", sc: "400"},
+            {img: "", name: "Sniper Elite 5", off: "200", pr: "600", sc: "450"},
+            {img: "", name: "Marvel's Spider-Man: Miles Morales", off: "350", pr: "800", sc: "650"},
+            {img: "", name: "Marvel's Spider-Man Remastered", off: "300", pr: "700", sc: "500"},
+            {img: "", name: "TEKKEN 7", off: "250", pr: "700", sc: "500"},
+            {img: "", name: "Tennis World Tour", off: "200", pr: "500", sc: "350"},
+            {img: "", name: "The Witcher 3: Wild Hunt", off: "350", pr: "800", sc: "650"},
+            {img: "", name: "TOMB RIDER", off: "300", pr: "700", sc: "500"},
+            {img: "", name: "UNCHARTED™ The Nathan Drake Collection", off: "200", pr: "550", sc: "450"},
+            {img: "", name: "UNCHARTED 4: A Thief’s End", off: "300", pr: "800", sc: "650"},
+            {img: "", name: "UNCHARTED: The Lost Legacy", off: "250", pr: "700", sc: "500"},
+            {img: "", name: "Unravel Two", off: "200", pr: "500", sc: "350"},
+            {img: "", name: "Watch Dogs®: Legion", off: "350", pr: "800", sc: "600"},
+            {img: "", name: "WWE20", off: "250", pr: "800", sc: "600"},
+            {img: "", name: "WWE22", off: "350", pr: "1000", sc: "800"},
+            {img: "", name: "WWE26", off: "600", pr: "2200", sc: "1800"}
         ];
 
         // ========================================================================
-        // 🎮👇 [ هنا تعديل أسعار ألعاب PS4 ] 👇🎮
+        // 🎮👇 [ هنا تعديل أسعار ألعاب PS4 مع خانة الصورة ] 👇🎮
         // ========================================================================
         const ps4Games = [
-            {name: "FC26", off: "350", pr: "1000", sc: "250"},
-            {name: "GTA", off: "300", pr: "700", sc: "500"},
-            {name: "OPS4", off: "300", pr: "700", sc: "500"},
-            {name: "OPS3", off: "350", pr: "800", sc: "650"},
-            {name: "MARVIL ADVENGAR", off: "450", pr: "1000", sc: "700"},
-            {name: "assassin's creed MIRAGE", off: "450", pr: "1000", sc: "750"},
-            {name: "Assassin’s Creed The Ezio Collection", off: "250", pr: "650", sc: "450"},
-            {name: "Assassin’s Creed Shadows", off: "500", pr: "2000", sc: "1500"},
-            {name: "Assassin's Creed Valhalla", off: "400", pr: "1000", sc: "700"},
-            {name: "assassin's creed origins", off: "250", pr: "800", sc: "500"},
-            {name: "assassin's creed odyssey", off: "250", pr: "800", sc: "500"},
-            {name: "assassin's creed BLACk flag", off: "x", pr: "x", sc: "x"},
-            {name: "a way out", off: "300", pr: "600", sc: "450"},
-            {name: "BATMAN", off: "250", pr: "700", sc: "500"},
-            {name: "battlefieldV", off: "250", pr: "700", sc: "500"},
-            {name: "crash team racing", off: "350", pr: "800", sc: "600"},
-            {name: "crash bandicoot", off: "300", pr: "700", sc: "500"},
-            {name: "CONTROL", off: "400", pr: "950", sc: "650"},
-            {name: "Cyberpunk 2077", off: "400", pr: "900", sc: "600"},
-            {name: "daysgone", off: "350", pr: "900", sc: "700"},
-            {name: "DETROIT", off: "300", pr: "800", sc: "600"},
-            {name: "Devil May Cry 5", off: "250", pr: "700", sc: "500"},
-            {name: "Elden ring", off: "500", pr: "1200", sc: "900"},
-            {name: "dragon ball", off: "350", pr: "x", sc: "x"},
-            {name: "FAR CRY 6", off: "400", pr: "1000", sc: "700"},
-            {name: "FC25", off: "250", pr: "700", sc: "400"},
-            {name: "FIFA 24", off: "250", pr: "600", sc: "300"},
-            {name: "Forza Horizon 5 Standard Edition", off: "500", pr: "1800", sc: "1400"},
-            {name: "Ghost of Yōte", off: "500", pr: "2000", sc: "1500"},
-            {name: "Ghost of Tsushima", off: "450", pr: "1200", sc: "850"},
-            {name: "God of War", off: "350", pr: "800", sc: "600"},
-            {name: "God of War Ragnarök", off: "400", pr: "1000", sc: "750"},
-            {name: "GRIP Digital", off: "300", pr: "650", sc: "500"},
-            {name: "HITMAN 3", off: "450", pr: "900", sc: "700"},
-            {name: "HITMAN 2", off: "300", pr: "700", sc: "600"},
-            {name: "Hogwarts Legacy", off: "500", pr: "900", sc: "700"},
-            {name: "Horizon Forbidden West", off: "450", pr: "1100", sc: "700"},
-            {name: "Horizon Zero Dawn", off: "250", pr: "650", sc: "450"},
-            {name: "Injustice: Gods Among Us", off: "250", pr: "600", sc: "400"},
-            {name: "Injustice™ 2", off: "250", pr: "700", sc: "500"},
-            {name: "Just Cause 4: Reloaded", off: "250", pr: "700", sc: "450"},
-            {name: "Just Cause 3", off: "250", pr: "550", sc: "400"},
-            {name: "It Takes Two", off: "350", pr: "800", sc: "500"},
-            {name: "The Last Of Us™ Remastered", off: "350", pr: "800", sc: "600"},
-            {name: "LEGO", off: "250", pr: "600", sc: "400"},
-            {name: "MINE CRAFT", off: "300", pr: "750", sc: "500"},
-            {name: "Mortal Kombat 11", off: "350", pr: "800", sc: "650"},
-            {name: "Mortal Kombat XL", off: "250", pr: "600", sc: "400"},
-            {name: "Mortal Kombat X", off: "x", pr: "x", sc: "x"},
-            {name: "Need for Speed™ Heat", off: "300", pr: "750", sc: "500"},
-            {name: "Need for Speed™ Payback", off: "250", pr: "650", sc: "450"},
-            {name: "Need for Speed™ Rivals", off: "250", pr: "500", sc: "400"},
-            {name: "eFootball™ 2026", off: "free", pr: "100", sc: "100"},
-            {name: "PES18", off: "400", pr: "1000", sc: "800"},
-            {name: "PES19", off: "500", pr: "x", sc: "x"},
-            {name: "PES20", off: "300", pr: "800", sc: "500"},
-            {name: "PES21", off: "500", pr: "1500", sc: "1000"},
-            {name: "Outlast", off: "250", pr: "600", sc: "400"},
-            {name: "Ratchet & Clank™", off: "250", pr: "550", sc: "450"},
-            {name: "Red Dead Redemption 2", off: "350", pr: "900", sc: "700"},
-            {name: "RESIDENT EVIL 2", off: "300", pr: "800", sc: "600"},
-            {name: "RESIDENT EVIL 4", off: "450", pr: "1000", sc: "700"},
-            {name: "RESIDENT EVIL 3", off: "300", pr: "900", sc: "650"},
-            {name: "RESIDENT EVIL 7 biohazard", off: "250", pr: "700", sc: "500"},
-            {name: "Resident Evil Village", off: "350", pr: "800", sc: "600"},
-            {name: "Resident Evil Requiem", off: "600", pr: "2200", sc: "1800"},
-            {name: "Rayman® Legends", off: "200", pr: "550", sc: "400"},
-            {name: "Sniper Elite 5", off: "200", pr: "600", sc: "450"},
-            {name: "Marvel's Spider-Man: Miles Morales", off: "350", pr: "800", sc: "650"},
-            {name: "Marvel's Spider-Man Remastered", off: "300", pr: "700", sc: "500"},
-            {name: "TEKKEN 7", off: "250", pr: "700", sc: "500"},
-            {name: "Tennis World Tour", off: "200", pr: "500", sc: "350"},
-            {name: "The Witcher 3: Wild Hunt", off: "350", pr: "800", sc: "650"},
-            {name: "TOMB RIDER", off: "300", pr: "700", sc: "500"},
-            {name: "UNCHARTED™ The Nathan Drake Collection", off: "200", pr: "550", sc: "450"},
-            {name: "UNCHARTED 4: A Thief’s End", off: "300", pr: "800", sc: "650"},
-            {name: "UNCHARTED: The Lost Legacy", off: "250", pr: "700", sc: "500"},
-            {name: "Unravel Two", off: "200", pr: "500", sc: "350"},
-            {name: "Watch Dogs®: Legion", off: "350", pr: "800", sc: "600"},
-            {name: "WWE20", off: "250", pr: "800", sc: "600"},
-            {name: "WWE22", off: "350", pr: "1000", sc: "800"}
+            {img: "https://upload.wikimedia.org/wikipedia/en/e/eb/EA_Sports_FC_24_cover.jpg", name: "FC 26", off: "350", pr: "1000", sc: "250"},
+            {img: "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png", name: "GTA", off: "300", pr: "700", sc: "500"},
+            {img: "", name: "OPS4", off: "300", pr: "700", sc: "500"},
+            {img: "", name: "OPS3", off: "350", pr: "800", sc: "650"},
+            {img: "", name: "MARVIL ADVENGAR", off: "450", pr: "1000", sc: "700"},
+            {img: "", name: "assassin's creed MIRAGE", off: "450", pr: "1000", sc: "750"},
+            {img: "", name: "Assassin’s Creed The Ezio Collection", off: "250", pr: "650", sc: "450"},
+            {img: "", name: "Assassin’s Creed Shadows", off: "500", pr: "2000", sc: "1500"},
+            {img: "", name: "Assassin's Creed Valhalla", off: "400", pr: "1000", sc: "700"},
+            {img: "", name: "assassin's creed origins", off: "250", pr: "800", sc: "500"},
+            {img: "", name: "assassin's creed odyssey", off: "250", pr: "800", sc: "500"},
+            {img: "", name: "assassin's creed BLACk flag", off: "x", pr: "x", sc: "x"},
+            {img: "", name: "a way out", off: "300", pr: "600", sc: "450"},
+            {img: "", name: "BATMAN", off: "250", pr: "700", sc: "500"},
+            {img: "", name: "battlefieldV", off: "250", pr: "700", sc: "500"},
+            {img: "", name: "crash team racing", off: "350", pr: "800", sc: "600"},
+            {img: "", name: "crash bandicoot", off: "300", pr: "700", sc: "500"},
+            {img: "", name: "CONTROL", off: "400", pr: "950", sc: "650"},
+            {img: "", name: "Cyberpunk 2077", off: "400", pr: "900", sc: "600"},
+            {img: "", name: "daysgone", off: "350", pr: "900", sc: "700"},
+            {img: "", name: "DETROIT", off: "300", pr: "800", sc: "600"},
+            {img: "", name: "Devil May Cry 5", off: "250", pr: "700", sc: "500"},
+            {img: "", name: "Elden ring", off: "500", pr: "1200", sc: "900"},
+            {img: "", name: "dragon ball", off: "350", pr: "x", sc: "x"},
+            {img: "", name: "FAR CRY 6", off: "400", pr: "1000", sc: "700"},
+            {img: "", name: "FC25", off: "250", pr: "700", sc: "400"},
+            {img: "", name: "FIFA 24", off: "250", pr: "600", sc: "300"},
+            {img: "", name: "Forza Horizon 5 Standard Edition", off: "500", pr: "1800", sc: "1400"},
+            {img: "", name: "Ghost of Tsushima", off: "450", pr: "1200", sc: "850"},
+            {img: "", name: "God of War", off: "350", pr: "800", sc: "600"},
+            {img: "", name: "God of War Ragnarök", off: "400", pr: "1000", sc: "750"},
+            {img: "", name: "GRIP Digital", off: "300", pr: "650", sc: "500"},
+            {img: "", name: "HITMAN 3", off: "450", pr: "900", sc: "700"},
+            {img: "", name: "HITMAN 2", off: "300", pr: "700", sc: "600"},
+            {img: "", name: "Hogwarts Legacy", off: "500", pr: "900", sc: "700"},
+            {img: "", name: "Horizon Forbidden West", off: "450", pr: "1100", sc: "700"},
+            {img: "", name: "Horizon Zero Dawn", off: "250", pr: "650", sc: "450"},
+            {img: "", name: "Injustice: Gods Among Us", off: "250", pr: "600", sc: "400"},
+            {img: "", name: "Injustice™ 2", off: "250", pr: "700", sc: "500"},
+            {img: "", name: "Just Cause 4: Reloaded", off: "250", pr: "700", sc: "450"},
+            {img: "", name: "Just Cause 3", off: "250", pr: "550", sc: "400"},
+            {img: "", name: "It Takes Two", off: "350", pr: "800", sc: "500"},
+            {img: "", name: "The Last Of Us™ Remastered", off: "350", pr: "800", sc: "600"},
+            {img: "", name: "LEGO", off: "250", pr: "600", sc: "400"},
+            {img: "", name: "MINE CRAFT", off: "300", pr: "750", sc: "500"},
+            {img: "", name: "Mortal Kombat 11", off: "350", pr: "800", sc: "650"},
+            {img: "", name: "Mortal Kombat XL", off: "250", pr: "600", sc: "400"},
+            {img: "", name: "Mortal Kombat X", off: "x", pr: "x", sc: "x"},
+            {img: "", name: "Need for Speed™ Heat", off: "300", pr: "750", sc: "500"},
+            {img: "", name: "Need for Speed™ Payback", off: "250", pr: "650", sc: "450"},
+            {img: "", name: "Need for Speed™ Rivals", off: "250", pr: "500", sc: "400"},
+            {img: "", name: "eFootball™ 2026", off: "free", pr: "100", sc: "100"},
+            {img: "", name: "PES18", off: "400", pr: "1000", sc: "800"},
+            {img: "", name: "PES19", off: "500", pr: "x", sc: "x"},
+            {img: "", name: "PES20", off: "300", pr: "800", sc: "500"},
+            {img: "", name: "PES21", off: "500", pr: "1500", sc: "1000"},
+            {img: "", name: "Outlast", off: "250", pr: "600", sc: "400"},
+            {img: "", name: "Ratchet & Clank™", off: "250", pr: "550", sc: "450"},
+            {img: "", name: "Red Dead Redemption 2", off: "350", pr: "900", sc: "700"},
+            {img: "", name: "RESIDENT EVIL 2", off: "300", pr: "800", sc: "600"},
+            {img: "", name: "RESIDENT EVIL 4", off: "450", pr: "1000", sc: "700"},
+            {img: "", name: "RESIDENT EVIL 3", off: "300", pr: "900", sc: "650"},
+            {img: "", name: "RESIDENT EVIL 7 biohazard", off: "250", pr: "700", sc: "500"},
+            {img: "", name: "Resident Evil Village", off: "350", pr: "800", sc: "600"},
+            {img: "", name: "Resident Evil Requiem", off: "600", pr: "2200", sc: "1800"},
+            {img: "", name: "Rayman® Legends", off: "200", pr: "550", sc: "400"},
+            {img: "", name: "Sniper Elite 5", off: "200", pr: "600", sc: "450"},
+            {img: "", name: "Marvel's Spider-Man: Miles Morales", off: "350", pr: "800", sc: "650"},
+            {img: "", name: "Marvel's Spider-Man Remastered", off: "300", pr: "700", sc: "500"},
+            {img: "", name: "TEKKEN 7", off: "250", pr: "700", sc: "500"},
+            {img: "", name: "Tennis World Tour", off: "200", pr: "500", sc: "350"},
+            {img: "", name: "The Witcher 3: Wild Hunt", off: "350", pr: "800", sc: "650"},
+            {img: "", name: "TOMB RIDER", off: "300", pr: "700", sc: "500"},
+            {img: "", name: "UNCHARTED™ The Nathan Drake Collection", off: "200", pr: "550", sc: "450"},
+            {img: "", name: "UNCHARTED 4: A Thief’s End", off: "300", pr: "800", sc: "650"},
+            {img: "", name: "UNCHARTED: The Lost Legacy", off: "250", pr: "700", sc: "500"},
+            {img: "", name: "Unravel Two", off: "200", pr: "500", sc: "350"},
+            {img: "", name: "Watch Dogs®: Legion", off: "350", pr: "800", sc: "600"},
+            {img: "", name: "WWE20", off: "250", pr: "800", sc: "600"},
+            {img: "", name: "WWE22", off: "350", pr: "1000", sc: "800"}
         ];
 
         // ========================================================================
@@ -696,9 +722,15 @@
         function renderTable(gamesArray, tbodyId) {
             const tbody = document.getElementById(tbodyId);
             gamesArray.forEach(game => {
+                // نظام الصور التلقائي
+                let imgSrc = game.img !== "" ? game.img : `https://ui-avatars.com/api/?name=${encodeURIComponent(game.name)}&background=1e293b&color=fff&size=100`;
+                
                 let tr = document.createElement("tr");
                 tr.innerHTML = `
-                    <td style="font-weight: 800; color: #f8fafc; text-align: left;" dir="ltr">${game.name}</td>
+                    <td class="game-name-cell">
+                        <img src="${imgSrc}" class="game-img" alt="${game.name}">
+                        <span dir="ltr">${game.name}</span>
+                    </td>
                     <td>${formatPrice(game.off)}</td>
                     <td>${formatPrice(game.pr)}</td>
                     <td>${formatPrice(game.sc)}</td>
@@ -717,9 +749,11 @@
             tables.forEach(tbody => {
                 let tr = tbody.getElementsByTagName("tr");
                 for (let i = 0; i < tr.length; i++) {
+                    // التعديل هنا عشان البحث يقرأ الاسم من جنب الصورة
                     let td = tr[i].getElementsByTagName("td")[0];
                     if (td) {
-                        let txtValue = td.textContent || td.innerText;
+                        let span = td.getElementsByTagName("span")[0];
+                        let txtValue = span ? (span.textContent || span.innerText) : (td.textContent || td.innerText);
                         if (txtValue.toUpperCase().indexOf(input) > -1) {
                             tr[i].style.display = "";
                         } else {

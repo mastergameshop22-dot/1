@@ -1,689 +1,84 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" manifest="cache.appcache">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAME SHOP STORE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-dark: #0b1120;
-            --card-bg: #1e293b;
-            --row-bg: #0f172a;
-            --accent-blue: #3b82f6;
-            --accent-glow: rgba(59, 130, 246, 0.5);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-light: rgba(255, 255, 255, 0.08);
-        }
-
-        body { 
-            font-family: 'Cairo', sans-serif; 
-            background-color: var(--bg-dark); 
-            background-image: radial-gradient(circle at top right, #1e293b 0%, transparent 40%),
-                              radial-gradient(circle at bottom left, #0f172a 0%, transparent 40%);
-            color: var(--text-main); 
-            margin: 0; 
-            padding: 20px; 
-            padding-bottom: 60px;
-            min-height: 100vh;
-        }
-
-        h1 { 
-            text-align: center; 
-            font-weight: 800;
-            font-size: 38px;
-            letter-spacing: 3px;
-            margin-bottom: 40px; 
-            background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 10px 30px rgba(0, 201, 255, 0.2);
-        }
-        
-        .tabs-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 45px;
-            background: rgba(30, 41, 59, 0.6);
-            backdrop-filter: blur(12px);
-            padding: 15px;
-            border-radius: 20px;
-            border: 1px solid var(--border-light);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .tab-btn {
-            background-color: transparent;
-            color: var(--text-muted);
-            border: none;
-            padding: 12px 28px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .tab-btn:hover {
-            color: var(--text-main);
-            background-color: rgba(255, 255, 255, 0.05);
-            transform: translateY(-2px);
-        }
-        .tab-btn.active {
-            color: #fff;
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
-            box-shadow: 0 8px 20px var(--accent-glow);
-            transform: translateY(-2px);
-        }
-
-        .tab-content { display: none; animation: slideUp 0.5s ease forwards; }
-        .tab-content.active { display: block; }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .search-sort-container { 
-            display: flex; 
-            justify-content: center; 
-            align-items: center;
-            gap: 15px; 
-            flex-wrap: wrap; 
-            margin-bottom: 40px; 
-        }
-        input[type="text"], select.sort-select { 
-            padding: 18px 25px; 
-            border: 1px solid var(--border-light); 
-            border-radius: 50px; 
-            background: rgba(30, 41, 59, 0.8);
-            backdrop-filter: blur(10px);
-            color: #fff; 
-            font-family: 'Cairo', sans-serif;
-            outline: none; 
-            font-size: 16px; 
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        input[type="text"] {
-            flex: 1;
-            max-width: 500px;
-            text-align: center;
-        }
-        select.sort-select {
-            cursor: pointer;
-            font-weight: 600;
-        }
-        input[type="text"]:focus, select.sort-select:focus { 
-            border-color: #3b82f6; 
-            box-shadow: 0 0 25px var(--accent-glow); 
-            transform: scale(1.02);
-            background: var(--card-bg);
-        }
-        select.sort-select option {
-            background: var(--card-bg);
-            color: #fff;
-        }
-        input[type="text"]::placeholder { color: #64748b; }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-            justify-content: center;
-        }
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 20px;
-            padding: 30px;
-            border: 1px solid var(--border-light);
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            overflow: hidden;
-        }
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 4px;
-        }
-        .card:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4); 
-            border-color: rgba(255,255,255,0.15);
-        }
-        
-        .border-ps5::before { background: linear-gradient(90deg, #e2e8f0, #94a3b8); }
-        .border-ps4::before { background: linear-gradient(90deg, #1d4ed8, #3b82f6); }
-        .border-xbox::before { background: linear-gradient(90deg, #16a34a, #22c55e); } 
-        .border-maintain::before { background: linear-gradient(90deg, #b91c1c, #ef4444); }
-        .border-acc::before { background: linear-gradient(90deg, #ca8a04, #eab308); }
-        .border-console::before { background: linear-gradient(90deg, #ec4899, #f43f5e); }
-        
-        .border-plus-ess::before { background: linear-gradient(90deg, #94a3b8, #cbd5e1); }
-        .border-plus-ext::before { background: linear-gradient(90deg, #d97706, #facc15); }
-        .border-plus-pre::before { background: linear-gradient(90deg, #7e22ce, #a855f7); }
-
-        .card-title { font-size: 24px; font-weight: 800; margin-bottom: 25px; color: #fff; letter-spacing: 1px;}
-        
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--row-bg);
-            margin: 14px 0;
-            padding: 14px 18px;
-            border-radius: 12px;
-            border: 1px solid var(--border-light);
-            transition: all 0.3s ease;
-        }
-        .price-row:hover { 
-            background: #1e293b; 
-            border-color: rgba(255,255,255,0.1); 
-            transform: translateX(-5px);
-        }
-        .item-name { font-weight: 600; font-size: 16px; color: var(--text-main);}
-        .item-price { font-weight: 800; color: #4ade80; font-size: 17px; }
-
-        .tables-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
-        @media (max-width: 1100px) { .tables-wrapper { grid-template-columns: 1fr; } }
-
-        .table-container { 
-            background-color: var(--card-bg); 
-            border-radius: 20px; 
-            border: 1px solid var(--border-light); 
-            overflow: hidden; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
-        .section-title { 
-            font-size: 22px; 
-            text-align: center; 
-            padding: 20px; 
-            color: #fff; 
-            font-weight: 800; 
-            letter-spacing: 1px;
-        }
-        .title-ps5 { background: linear-gradient(135deg, #1e3a8a, #3b82f6); }
-        .title-ps4 { background: linear-gradient(135deg, #172554, #1d4ed8); }
-
-        table { width: 100%; border-collapse: collapse; text-align: center; }
-        th, td { padding: 15px 10px; border-bottom: 1px solid var(--border-light); font-size: 15px; vertical-align: middle;}
-        
-        .sub-header { background-color: rgba(0,0,0,0.3); color: #cbd5e1; font-size: 14px; font-weight: 800;}
-        
-        tbody tr:nth-child(odd) { background-color: transparent; }
-        tbody tr:nth-child(even) { background-color: rgba(255,255,255,0.02); }
-        tbody tr:hover { background-color: rgba(59, 130, 246, 0.1); cursor: default;} 
-
-        .sold-out { 
-            color: #fca5a5; 
-            font-size: 13px; 
-            font-weight: 800; 
-            background: linear-gradient(135deg, #991b1b, #dc2626); 
-            color: white;
-            padding: 5px 10px; 
-            border-radius: 8px; 
-            display: inline-block; 
-            box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3);
-        }
-        
-        .game-price-tag {
-            color: #4ade80;
-            font-weight: 800;
-            background: rgba(74, 222, 128, 0.1);
-            padding: 4px 8px;
-            border-radius: 6px;
-        }
-
-        .game-img {
-            width: 65px; 
-            height: 65px; 
-            min-width: 65px; 
-            flex-shrink: 0;  
-            border-radius: 10px; 
-            object-fit: cover;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-            transition: transform 0.3s, border-color 0.3s;
-        }
-        tbody tr:hover .game-img {
-            transform: scale(1.15); 
-            border-color: #3b82f6;
-        }
-        
-        .game-name-cell {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start; 
-            gap: 20px; 
-            text-align: left;
-            font-weight: 800;
-            color: #f8fafc;
-            padding-right: 20px !important; 
-        }
-        .game-name-cell span {
-            text-align: left; 
-            width: 100%;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GAME SHOP - Poops Exploit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root { --neon-blue: #00f3ff; --neon-purple: #b000ff; --dark-bg: rgba(5, 8, 14, 0.9); }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { min-height: 100vh; background: #000; color: #fff; font-family: 'Cairo', sans-serif; display: flex; align-items: center; justify-content: center; direction: rtl; overflow: hidden; }
+  body::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.9) 100%); z-index: 0; }
+  
+  .hud-container { position: relative; z-index: 1; width: 95%; max-width: 900px; background: var(--dark-bg); border: 2px solid var(--neon-purple); clip-path: polygon(40px 0, 100% 0, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0 100%, 0 40px); padding: 40px 30px; box-shadow: 0 0 30px rgba(176, 0, 255, 0.2); }
+  
+  .brand-title { font-family: 'Orbitron', sans-serif; font-size: 3.5rem; font-weight: 900; text-align: center; margin-bottom: 0px; letter-spacing: 4px; direction: ltr; background: linear-gradient(to right, var(--neon-purple), #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 10px rgba(176, 0, 255, 0.6)); }
+  .brand-ar { font-size: 1.5rem; text-align: center; color: var(--neon-blue); font-weight: 900; margin-bottom: 5px; text-shadow: 0 0 10px rgba(0, 243, 255, 0.5); }
+  .brand-sub { font-size: 1.2rem; text-align: center; color: #aebfd3; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; direction: ltr; font-family: 'Orbitron', sans-serif; }
+  
+  .powered-by { text-align: center; font-family: 'Orbitron', sans-serif; font-size: 1.1rem; letter-spacing: 2px; color: #aebfd3; margin-bottom: 25px; direction: ltr; }
+  .powered-by span { color: var(--neon-blue); font-weight: 900; text-shadow: 0 0 10px var(--neon-blue); }
+  
+  .status-panel { background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 8px; border-right: 4px solid var(--neon-purple); margin-bottom: 20px; position: relative; box-shadow: inset 0 0 20px rgba(0,0,0,0.8); }
+  .status-panel::before { content: 'EXECUTION'; position: absolute; top: -12px; left: 15px; background: var(--neon-purple); color: #fff; padding: 2px 10px; font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: bold; border-radius: 4px; }
+  
+  #state { font-size: 22px; font-weight: 900; color: var(--neon-blue); text-align: center; margin-bottom: 10px; text-shadow: 0 0 10px rgba(0, 243, 255, 0.5); }
+  .loader-wrapper { display: flex; justify-content: center; gap: 8px; margin-top: 10px; }
+  .dot { width: 12px; height: 12px; background: var(--neon-purple); border-radius: 50%; box-shadow: 0 0 10px var(--neon-purple); animation: bounce 1s infinite alternate; }
+  .dot:nth-child(2) { animation-delay: 0.2s; } .dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes bounce { to { transform: translateY(-10px); opacity: 0.5; } }
+  
+  #out-container { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
+  #out { white-space: pre-wrap; font: 12px/1.45 Consolas, monospace; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 8px; padding: 15px; max-height: 200px; overflow-y: auto; color: var(--neon-blue); direction: ltr; text-align: left; }
+  
+  .done { color: #00ff88 !important; text-shadow: 0 0 10px #00ff88 !important; }
+  .error { color: #ff3333 !important; text-shadow: 0 0 10px #ff3333 !important; }
+  
+  .footer-sys { position: fixed; bottom: 10px; right: 20px; font-family: 'Orbitron', sans-serif; font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 2px; z-index: 2; direction: ltr; }
+  @media (max-width: 600px) { .brand-title { font-size: 2.5rem; } .brand-sub { font-size: 1rem; } .powered-by { font-size: 0.9rem; } }
+</style>
 </head>
 <body>
-
-    <h1>🎮 GAME SHOP STORE 🎮</h1>
-
-    <div class="tabs-container">
-        <button class="tab-btn active" onclick="openSection('games')">🎯 أسعار الألعاب</button>
-        <button class="tab-btn" onclick="openSection('psplus')">⭐ اشتراكات بلس</button>
-        <button class="tab-btn" onclick="openSection('controllers')">🕹️ مبيعات الدرعات</button>
-        <button class="tab-btn" onclick="openSection('maintenance')">🔧 صيانة الدرعات</button>
-        <button class="tab-btn" onclick="openSection('console-maintenance')">🛠️ صيانة الأجهزة</button>
-        <button class="tab-btn" onclick="openSection('accessories')">🎧 الإكسسوارات</button>
+<div class="hud-container">
+  <h1 class="brand-title">GAME SHOP</h1>
+  <div class="brand-ar">جيم شوب</div>
+  <div class="brand-sub">POOPS EXPLOIT</div>
+  <div class="powered-by">POWERED BY <span>MAHMOUD FATHY</span></div>
+  
+  <div class="status-panel">
+    <div id="state">
+      <span id="stateText">⏳ جارٍ تحميل سلسلة Poops...</span>
+      <div class="loader-wrapper">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
     </div>
+  </div>
+  
+  <div id="out-container"><div id="out"></div></div>
+</div>
 
-    <!-- قسم الألعاب -->
-    <div id="games" class="tab-content active">
-        <div class="search-sort-container">
-            <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="🔍 ابحث عن اسم اللعبة المفضل لك...">
-            <select id="sortGames" class="sort-select" onchange="applySort()">
-                <option value="default">↕️ ترتيب الألعاب (الافتراضي)</option>
-                <option value="low">🔽 السعر: من الأقل للأغلى</option>
-                <option value="high">🔼 السعر: من الأغلى للأقل</option>
-            </select>
-        </div>
+<div class="footer-sys">GAME SHOP OS v2.0 - Poops</div>
 
-        <div class="tables-wrapper">
-            <!-- جدول ألعاب PS5 -->
-            <div class="table-container">
-                <div class="section-title title-ps5">ألعاب PS5</div>
-                <table class="ps5-table">
-                    <thead>
-                        <tr>
-                            <th rowspan="2" style="width: 50%;">اللعبة</th>
-                            <th colspan="3">الأسعار</th>
-                        </tr>
-                        <tr>
-                            <th class="sub-header">OFF</th>
-                            <th class="sub-header">PR</th>
-                            <th class="sub-header">SC</th>
-                        </tr>
-                    </thead>
-                    <tbody id="ps5Body"></tbody>
-                </table>
-            </div>
+<script type="module">
+  import "./chain_poops.js";
 
-            <!-- جدول ألعاب PS4 -->
-            <div class="table-container">
-                <div class="section-title title-ps4">ألعاب PS4</div>
-                <table class="ps4-table">
-                    <thead>
-                        <tr>
-                            <th rowspan="2" style="width: 50%;">اللعبة</th>
-                            <th colspan="3">الأسعار</th>
-                        </tr>
-                        <tr>
-                            <th class="sub-header">OFF</th>
-                            <th class="sub-header">PR</th>
-                            <th class="sub-header">SC</th>
-                        </tr>
-                    </thead>
-                    <tbody id="ps4Body"></tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+  const stateText = document.getElementById("stateText");
+  const state = document.getElementById("state");
 
-    <!-- قسم اشتراكات بلس -->
-    <div id="psplus" class="tab-content">
-        <div class="grid-container" id="psPlusContainer"></div>
-    </div>
+  window.poopsDone = function () {
+    state.classList.add("done");
+    stateText.innerHTML = "اكتملت العملية بنجاح<br><small>EXPLOIT SUCCESSFUL</small>";
+    document.querySelector('.loader-wrapper').style.display = 'none';
+  };
 
-    <!-- قسم الدرعات -->
-    <div id="controllers" class="tab-content">
-        <div class="grid-container" id="controllersContainer"></div>
-    </div>
-
-    <!-- قسم صيانة الدرعات -->
-    <div id="maintenance" class="tab-content">
-        <div class="grid-container" id="maintenanceContainer"></div>
-    </div>
-
-    <!-- قسم صيانة الأجهزة -->
-    <div id="console-maintenance" class="tab-content">
-        <div class="grid-container" id="consoleMaintenanceContainer"></div>
-    </div>
-
-    <!-- قسم الإكسسوارات -->
-    <div id="accessories" class="tab-content">
-        <div class="grid-container" id="accessoriesContainer"></div>
-    </div>
-
-    <script>
-        function openSection(sectionId) {
-            document.querySelectorAll('.tab-content').forEach(content => { content.classList.remove('active'); });
-            document.querySelectorAll('.tab-btn').forEach(btn => { btn.classList.remove('active'); });
-            document.getElementById(sectionId).classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
-
-        const psPlusData = [
-            {
-                name: "Essential ⚪",
-                theme: "border-plus-ess",
-                items: [
-                    { label: "شهر واحد", price: "800", color: "#f8fafc" },
-                    { label: "3 شهور", price: "1500", color: "#f8fafc" },
-                    { label: "سنة كاملة", price: "2500", color: "#f8fafc" }
-                ]
-            },
-            {
-                name: "Extra ⭐",
-                theme: "border-plus-ext",
-                items: [
-                    { label: "شهر واحد", price: "1000", color: "#fbbf24" }, 
-                    { label: "3 شهور", price: "2000", color: "#fbbf24" },
-                    { label: "سنة كاملة", price: "4000", color: "#fbbf24" }
-                ]
-            },
-            {
-                name: "Premium 👑",
-                theme: "border-plus-pre",
-                items: [
-                    { label: "شهر واحد", price: "x", color: "#c084fc" },
-                    { label: "3 شهور", price: "x", color: "#c084fc" },
-                    { label: "سنة كاملة", price: "x", color: "#c084fc" }
-                ]
-            }
-        ];
-
-        const controllersData = [
-            {
-                name: "يد تحكم PS5 (DualSense)",
-                theme: "border-ps5",
-                items: [
-                    { label: "أصلي", price: "4200", color: "#60a5fa" },
-                    { label: "استيراد", price: "3000-2750", color: "#4ade80" },
-                    { label: "كوبي", price: "2500", color: "#c084fc" }
-                ]
-            },
-            {
-                name: "يد تحكم PS4 (DualShock 4)",
-                theme: "border-ps4",
-                items: [
-                    { label: "امريكي اوريجينال", price: "1000", color: "#60a5fa" },
-                    { label: "برو استيراد", price: "1200", color: "#4ade80" },
-                    { label: "برو استيراد كسر زيرو", price: "1500", color: "#4ade80" },
-                    { label: "كوبي جديد", price: "450", color: "#c084fc" },
-                    { label: "كوبي مستعمل", price: "275", color: "#c084fc" }
-                ]
-            }
-        ];
-
-        const maintenanceData = [
-            {
-                name: "صيانة درعات PS5",
-                theme: "border-maintain",
-                items: [
-                    { label: "طقم الجلد", price: "50", color: "#f8fafc" },
-                    { label: "البورده الورق", price: "100", color: "#f8fafc" },
-                    { label: "الانالوج", price: "100", color: "#f8fafc" },
-                    { label: "جلده الانالوج", price: "20", color: "#f8fafc" },
-                    { label: "الوش مستعمل", price: "150", color: "#f8fafc" },
-                    { label: "الوش جديد", price: "200", color: "#f8fafc" },
-                    { label: "الضهر مستعمل", price: "150", color: "#f8fafc" },
-                    { label: "الضهر جديد", price: "200", color: "#f8fafc" },
-                    { label: "الزرار ايا كان الزرار الناقص", price: "50", color: "#f8fafc" },
-                    { label: "البطاريه", price: "300", color: "#f8fafc" },
-                    { label: "فلاتات الادرعة الفايف", price: "40", color: "#f8fafc" }
-                ]
-            },
-            {
-                name: "صيانة درعات PS4",
-                theme: "border-maintain",
-                items: [
-                    { label: "طقم الجلد", price: "35", color: "#f8fafc" },
-                    { label: "جلدة الانالوج", price: "10", color: "#f8fafc" },
-                    { label: "الانالوج", price: "80", color: "#f8fafc" },
-                    { label: "البورده الورق", price: "50", color: "#f8fafc" },
-                    { label: "الشاسيه", price: "70", color: "#f8fafc" },
-                    { label: "البرسه تقريبا", price: "50", color: "#f8fafc" },
-                    { label: "الزرار L1-L2 -R1-R2", price: "20", color: "#f8fafc" },
-                    { label: "السوسته", price: "15", color: "#f8fafc" },
-                    { label: "التخشينه", price: "10", color: "#f8fafc" },
-                    { label: "الكاڤر جديد", price: "250", color: "#f8fafc" },
-                    { label: "الوش مستعمل", price: "30", color: "#f8fafc" },
-                    { label: "الضهر مستعمل", price: "30", color: "#f8fafc" },
-                    { label: "Ic شحن", price: "150", color: "#f8fafc" },
-                    { label: "البطاريه", price: "100", color: "#f8fafc" },
-                    { label: "فلاتة شحن فور", price: "15", color: "#f8fafc" },
-                    { label: "سوكت شحن فور", price: "55", color: "#f8fafc" }
-                ]
-            },
-            {
-                name: "صيانة درعات Xbox One",
-                theme: "border-xbox",
-                items: [
-                    { label: "طقم الجلد", price: "100", color: "#f8fafc" },
-                    { label: "المسطره", price: "250", color: "#f8fafc" },
-                    { label: "جلدة الانالوج", price: "20", color: "#f8fafc" },
-                    { label: "الانالوج", price: "100", color: "#f8fafc" },
-                    { label: "الشاسيه", price: "450", color: "#f8fafc" },
-                    { label: "البطاريات", price: "250", color: "#f8fafc" }
-                ]
-            },
-            {
-                name: "صيانة درعات Xbox Series",
-                theme: "border-xbox",
-                items: [
-                    { label: "طقم الجلد", price: "100", color: "#f8fafc" },
-                    { label: "المسطره", price: "350", color: "#f8fafc" },
-                    { label: "جلدة الانالوج", price: "20", color: "#f8fafc" },
-                    { label: "الانالوج", price: "100", color: "#f8fafc" },
-                    { label: "الشاسيه", price: "450", color: "#f8fafc" },
-                    { label: "البطاريات", price: "250", color: "#f8fafc" }
-                ]
-            }
-        ];
-
-        const consoleMaintenanceData = [
-            {
-                name: "صيانة أجهزة PS5",
-                theme: "border-console",
-                items: [
-                    { label: "الباور سبلاي", price: "1200-4000", color: "#f8fafc" },
-                    { label: "الكولر", price: "1000", color: "#f8fafc" },
-                    { label: "المروحة", price: "750-1000", color: "#f8fafc" },
-                    { label: "قطعة البلوتوث", price: "1200-1800", color: "#f8fafc" },
-                    { label: "زرار الباور", price: "1500", color: "#f8fafc" },
-                    { label: "سوكت HD", price: "500-1000", color: "#f8fafc" },
-                    { label: "IC HD", price: "2500", color: "#f8fafc" },
-                    { label: "IC HD Slim Small", price: "6000", color: "#f8fafc" },
-                    { label: "تغيير SSD", price: "2500", color: "#f8fafc" },
-                    { label: "IC Control", price: "2500", color: "#f8fafc" },
-                    { label: "مشاكل التسخين", price: "برينجاتها", color: "#f8fafc" }
-                ]
-            },
-            {
-                name: "صيانة أجهزة PS4",
-                theme: "border-console",
-                items: [
-                    { label: "الباور سبلاي", price: "1500-2000", color: "#f8fafc" },
-                    { label: "الكولر", price: "450", color: "#f8fafc" },
-                    { label: "المروحة", price: "350-600", color: "#f8fafc" },
-                    { label: "قطعة البلوتوث", price: "800-1500", color: "#f8fafc" },
-                    { label: "زرار الباور", price: "250", color: "#f8fafc" },
-                    { label: "سوكت HD", price: "350", color: "#f8fafc" },
-                    { label: "IC HD", price: "1250", color: "#f8fafc" },
-                    { label: "IC Hard", price: "450", color: "#f8fafc" },
-                    { label: "مشاكل التسخين", price: "برينجاتها", color: "#f8fafc" }
-                ]
-            }
-        ];
-
-        const accessoriesData = [
-            {
-                name: "إكسسوارات PS5",
-                theme: "border-acc",
-                items: [
-                    { label: "قاعدة شحن مزدوجة", price: "600", color: "#f8fafc" },
-                    { label: "جراب سيليكون للذراع", price: "150", color: "#f8fafc" },
-                    { label: "طقم حماية أنالوج", price: "50", color: "#f8fafc" }
-                ]
-            },
-            {
-                name: "إكسسوارات PS4",
-                theme: "border-acc",
-                items: [
-                    { label: "استاند شاحن بلاطه", price: "150", color: "#f8fafc" },
-                    { label: "استاند شحن dube مزدوج", price: "350", color: "#f8fafc" },
-                    { label: "استاند شحن اوريجينال", price: "1000", color: "#f8fafc" },
-                    { label: "استاند جهاز مبرد +شحن", price: "1000", color: "#f8fafc" }
-                ]
-            }
-        ];
-
-        const ps5Games = [
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRASQZie24QqGQMuW1DjWqm5AjLRndqwl9jKeY608zKuA&s=10", name: "FC 26", off: "350", pr: "1000", sc: "250"},
-            {img: "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png", name: "GTA", off: "300", pr: "600", sc: "300"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRijKW8R4e7cSAIMnHRdqYmTg0sMa-6eOX5TxMNiRUZtw&s=10", name: "OPS4", off: "300", pr: "700", sc: "300"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvht8ZHZ75wrK8It67t5av_WJGxuJjtfW9uQclObITtg&s=10", name: "OPS3", off: "350", pr: "700", sc: "300"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUsVW6UQB0KDUNH11dcrWzBg91S47MZlGBNb9yHK7Blg&s=10", name: "MARVIL ADVENGAR", off: "450", pr: "1000", sc: "700"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6i078dOAmUb3n3o17cEVbCnINUdqxvygrRNvSTcJIhQ&s=10", name: "assassin's creed MIRAGE", off: "350", pr: "1000", sc: "750"}
-        ];
-
-        // مصفوفة ألعاب PS4 (تم إضافتها كاملة لضمان عدم ظهور الشاشة فارغة)
-        const ps4Games = [
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7pnINcPLHofHDdhhNtUqkj7my-_L4smy5koNTRb55cg&s", name: "FC25", off: "250", pr: "700", sc: "400"},
-            {img: "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png", name: "GTA V", off: "250", pr: "600", sc: "300"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDF551Zxajw7ZP43icJbot8ddRmfe32pZLyQfG4xKNPQ&s=10", name: "God of War", off: "300", pr: "750", sc: "500"},
-            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi1Yel1p18Z2m2GoJzUY0cca3v94sxl8duRLZE-9rPBg&s=10", name: "Red Dead Redemption 2", off: "350", pr: "900", sc: "700"}
-        ];
-
-        const originalPs5Games = [...ps5Games];
-        const originalPs4Games = [...ps4Games];
-
-        function renderCards(dataArray, containerId) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = '';
-            dataArray.forEach(group => {
-                let itemsHTML = '';
-                group.items.forEach(item => {
-                    let displayPrice = item.price;
-                    if (displayPrice.toLowerCase() === 'x' || displayPrice === '❌' || displayPrice === '-') {
-                        displayPrice = '<span class="sold-out">نفدت ❌</span>';
-                    } else if (!/[أ-ي]/.test(displayPrice)) {
-                        displayPrice = displayPrice + ' ج.م';
-                    }
-
-                    itemsHTML += `
-                        <div class="price-row">
-                            <span class="item-name" style="color:${item.color}">${item.label}</span>
-                            <span class="item-price">${displayPrice}</span>
-                        </div>
-                    `;
-                });
-                container.innerHTML += `
-                    <div class="card ${group.theme}">
-                        <div class="card-title">${group.name}</div>
-                        ${itemsHTML}
-                    </div>
-                `;
-            });
-        }
-
-        renderCards(psPlusData, "psPlusContainer");
-        renderCards(controllersData, "controllersContainer");
-        renderCards(maintenanceData, "maintenanceContainer");
-        renderCards(consoleMaintenanceData, "consoleMaintenanceContainer");
-        renderCards(accessoriesData, "accessoriesContainer");
-
-        function formatPrice(val) {
-            if (val.toLowerCase() === 'x' || val === '❌' || val === '-') return '<span class="sold-out">نفدت ❌</span>';
-            return `<span class="game-price-tag">${val}</span>`;
-        }
-
-        function renderTable(gamesArray, tbodyId) {
-            const tbody = document.getElementById(tbodyId);
-            tbody.innerHTML = ''; 
-            
-            gamesArray.forEach(game => {
-                let imgSrc = game.img !== "" ? game.img : `https://ui-avatars.com/api/?name=${encodeURIComponent(game.name)}&background=1e293b&color=fff&size=100`;
-                
-                let tr = document.createElement("tr");
-                tr.innerHTML = `
-                    <td class="game-name-cell">
-                        <img src="${imgSrc}" class="game-img" alt="${game.name}">
-                        <span dir="ltr">${game.name}</span>
-                    </td>
-                    <td>${formatPrice(game.off)}</td>
-                    <td>${formatPrice(game.pr)}</td>
-                    <td>${formatPrice(game.sc)}</td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        function applySort() {
-            const sortType = document.getElementById('sortGames').value;
-            let sortedPs5 = [...originalPs5Games];
-            let sortedPs4 = [...originalPs4Games];
-
-            if(sortType !== 'default') {
-                sortedPs5 = sortArray(sortedPs5, sortType);
-                sortedPs4 = sortArray(sortedPs4, sortType);
-            }
-
-            renderTable(sortedPs5, "ps5Body");
-            renderTable(sortedPs4, "ps4Body");
-            searchTable(); 
-        }
-
-        function sortArray(arr, type) {
-            return arr.sort((a, b) => {
-                let priceA = parseInt(a.off);
-                let priceB = parseInt(b.off);
-                
-                let isNaNA = isNaN(priceA);
-                let isNaNB = isNaN(priceB);
-
-                if(isNaNA && isNaNB) return 0;
-                if(isNaNA) return 1;
-                if(isNaNB) return -1;
-
-                if(type === 'low') {
-                    return priceA - priceB;
-                } else {
-                    return priceB - priceA;
-                }
-            });
-        }
-
-        renderTable(ps5Games, "ps5Body");
-        renderTable(ps4Games, "ps4Body");
-
-        function searchTable() {
-            let input = document.getElementById("searchInput").value.toUpperCase();
-            let tables = [document.getElementById("ps5Body"), document.getElementById("ps4Body")];
-
-            tables.forEach(tbody => {
-                let tr = tbody.getElementsByTagName("tr");
-                for (let i = 0; i < tr.length; i++) {
-                    let td = tr[i].getElementsByTagName("td")[0];
-                    if (td) {
-                        let span = td.getElementsByTagName("span")[0];
-                        let txtValue = span ? (span.textContent || span.innerText) : (td.textContent || td.innerText);
-                        if (txtValue.toUpperCase().indexOf(input) > -1) {
-                            tr[i].style.display = "";
-                        } else {
-                            tr[i].style.display = "none";
-                        }
-                    }       
-                }
-            });
-        }
-    </script>
+  window.poopsError = function () {
+    state.classList.add("error");
+    stateText.innerHTML = "حدث خطأ أثناء التنفيذ<br><small>EXPLOIT FAILED</small>";
+    document.querySelector('.loader-wrapper').style.display = 'none';
+  };
+</script>
 </body>
 </html>

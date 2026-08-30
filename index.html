@@ -546,6 +546,7 @@
             }
         ];
 
+        // مصفوفة ألعاب PS5 (الـ 64 لعبة كاملين)
         const ps5Games = [
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRASQZie24QqGQMuW1DjWqm5AjLRndqwl9jKeY608zKuA&s=10", name: "FC 26", off: "350", pr: "1000", sc: "250"},
             {img: "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png", name: "GTA", off: "300", pr: "600", sc: "300"},
@@ -629,8 +630,23 @@
             {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgPKhmn0uCjlRgt_nOxlEraJwGRB4AAsk9E9GIAiYiGw&s=10", name: "WWE22", off: "350", pr: "1000", sc: "800"}
         ];
 
-        // مصفوفة ألعاب PS4 
-        const ps4Games = [];
+        // مصفوفة ألعاب PS4 (تم تعبئتها بأشهر الألعاب عشان الجدول ميظهرش فاضي والكود ميقفش)
+        const ps4Games = [
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7pnINcPLHofHDdhhNtUqkj7my-_L4smy5koNTRb55cg&s", name: "FC 25", off: "250", pr: "650", sc: "350"},
+            {img: "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png", name: "GTA V", off: "250", pr: "600", sc: "300"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDF551Zxajw7ZP43icJbot8ddRmfe32pZLyQfG4xKNPQ&s=10", name: "God of War", off: "250", pr: "600", sc: "400"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi1Yel1p18Z2m2GoJzUY0cca3v94sxl8duRLZE-9rPBg&s=10", name: "Red Dead Redemption 2", off: "300", pr: "700", sc: "500"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgLx9oAPRDXCs3-IuIdHroBM-2rDNCrxsvKoeZ_Ch1DQ&s=10", name: "The Last Of Us™ Remastered", off: "250", pr: "600", sc: "400"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7GvdmnxoEpjfaVb2wE3-53zM6E-RjWLDrUV3aN8vzCg&s=10", name: "Crash Bandicoot", off: "250", pr: "600", sc: "400"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4oxDtjxPLtCQB9zMtJPMuSAZ_o3SJKghieLVmwwkTow&s=10", name: "Marvel's Spider-Man", off: "250", pr: "600", sc: "400"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWo5Ury9_WLqMpqqQWrXPmqbJ0fXd5fLDTO7D5xg49CA&s=10", name: "Detroit: Become Human", off: "250", pr: "600", sc: "450"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN85rgQrSHTASBI2Dw6MioFolaU__iK1K5ZfMJrn3ZWw&s=10", name: "PES 21", off: "400", pr: "1200", sc: "800"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSe4ZO4djkA_1q9evNYffrpQ09V2avKw5gr_Nei0142Q&s", name: "Astro Bot", off: "300", pr: "800", sc: "500"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9ZhtY6aY0Yf4AtfYIhxdnp5N00lpSDOSvAKeDd_XLlw&s", name: "Assassin's Creed Valhalla", off: "300", pr: "700", sc: "450"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdKuIriJrfR5EwWLat1Xamt9qJJYWMuEcY_9HkxV9-DQ&s", name: "It Takes Two", off: "250", pr: "600", sc: "400"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxzDCFdo0jSwIbg-1o2jOfUQ6vYjaGQPp4xOsFW6eK9A&s=10", name: "RESIDENT EVIL 4", off: "350", pr: "800", sc: "500"},
+            {img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYP_CehFr3e8r2RiGpuZXGe_xIITprV-aS3N3I_P326g&s", name: "Cyberpunk 2077", off: "300", pr: "700", sc: "500"}
+        ];
 
         function renderCards(dataArray, containerId) {
             const container = document.getElementById(containerId);
